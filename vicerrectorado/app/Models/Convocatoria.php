@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Convocatoria extends Model
 {
+    use LogsActivity;
     protected $fillable = [
         'titulo',
         'slug',
@@ -20,8 +23,8 @@ class Convocatoria extends Model
     ];
 
     protected $casts = [
-        'fecha_inicio' => 'date',
-        'fecha_cierre' => 'date',
+        'fecha_inicio' => 'datetime',
+        'fecha_cierre' => 'datetime',
         'activo' => 'boolean',
     ];
 
@@ -63,5 +66,12 @@ class Convocatoria extends Model
         }
 
         return 'cerrada';
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['titulo', 'tipo', 'descripcion', 'fecha_inicio', 'fecha_cierre', 'activo'])
+            ->setDescriptionForEvent(fn(string $eventName) => "Convocatoria {$eventName}");
     }
 }

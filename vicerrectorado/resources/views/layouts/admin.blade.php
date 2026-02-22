@@ -53,6 +53,10 @@
                 class="block px-4 py-2 rounded hover:bg-slate-700">
                     Convocatorias
             </a>
+            <a href="{{ route('admin.logs') }}"
+                class="block px-4 py-2 rounded hover:bg-slate-700 border-t border-slate-700 mt-2 pt-4">
+                    📋 Logs de Auditoría
+            </a>
         </nav>
         <div class="p-4 border-t border-slate-700 text-sm space-y-2">
 

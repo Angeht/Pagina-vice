@@ -13,6 +13,7 @@ use App\Livewire\Admin\DocumentosAcademicos\Index as DocumentosAcademicosIndex;
 use App\Models\DocumentoAcademico;
 use App\Livewire\Admin\Convocatorias\Index as ConvocatoriasIndex;
 use App\Models\Convocatoria;
+use App\Livewire\Admin\Logs\Index as LogsIndex;
 
 // Ruta dashboard que Breeze necesita
 Route::get('/dashboard', function () {
@@ -178,7 +179,28 @@ Route::middleware(['auth', 'role:admin'])
     ->group(function () {
 
         Route::get('/dashboard', function () {
-            return view('admin.dashboard');
+            $stats = [
+                'noticias_total' => \App\Models\Noticia::count(),
+                'noticias_publicadas' => \App\Models\Noticia::where('publicado', true)->count(),
+                'convocatorias_abiertas' => \App\Models\Convocatoria::where('activo', true)
+                    ->get()
+                    ->filter(fn($c) => $c->estado === 'abierta')
+                    ->count(),
+                'convocatorias_total' => \App\Models\Convocatoria::count(),
+                'documentos_activos' => \App\Models\DocumentoAcademico::where('activo', true)->count(),
+                'autoridades_activas' => \App\Models\Autoridad::where('activo', true)->count(),
+                'unidades_activas' => \App\Models\Unidad::where('activo', true)->count(),
+                'categorias_total' => \App\Models\Categoria::count(),
+            ];
+
+            $noticiasRecientes = \App\Models\Noticia::latest()->take(5)->get();
+            $convocatoriasProximas = \App\Models\Convocatoria::where('activo', true)
+                ->orderBy('fecha_inicio')
+                ->get()
+                ->filter(fn($c) => in_array($c->estado, ['abierta', 'proxima']))
+                ->take(5);
+
+            return view('admin.dashboard', compact('stats', 'noticiasRecientes', 'convocatoriasProximas'));
         })->name('admin.dashboard');
         Route::get('/noticias', NoticiasIndex::class)
         ->name('admin.noticias');
@@ -194,6 +216,8 @@ Route::middleware(['auth', 'role:admin'])
         ->name('admin.gestion');
         Route::get('/convocatorias', ConvocatoriasIndex::class)
         ->name('admin.convocatorias');
+        Route::get('/logs', LogsIndex::class)
+        ->name('admin.logs');
     });
 
 require __DIR__.'/auth.php';

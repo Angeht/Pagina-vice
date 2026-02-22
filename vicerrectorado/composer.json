@@ -10,7 +10,8 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.6.4",
         "livewire/volt": "^1.7.0",
-        "spatie/laravel-permission": "^6.24"
+        "spatie/laravel-permission": "^6.24",
+        "spatie/laravel-activitylog": "^4.12"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -47,14 +48,10 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --ansi"
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\""
         ]
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "11.x-dev"
-        },
         "laravel": {
             "dont-discover": []
         }
@@ -71,3 +68,4 @@
     "minimum-stability": "stable",
     "prefer-stable": true
 }
+

@@ -76,8 +76,8 @@ class Index extends Component
         $this->titulo = $c->titulo;
         $this->tipo = $c->tipo;
         $this->descripcion = $c->descripcion;
-        $this->fecha_inicio = $c->fecha_inicio?->format('Y-m-d');
-        $this->fecha_cierre = $c->fecha_cierre?->format('Y-m-d');
+        $this->fecha_inicio = $c->fecha_inicio ? $c->fecha_inicio->format('Y-m-d') : null;
+        $this->fecha_cierre = $c->fecha_cierre ? $c->fecha_cierre->format('Y-m-d') : null;
         $this->activo = $c->activo;
     }
 

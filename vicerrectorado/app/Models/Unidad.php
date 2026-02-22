@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Unidad extends Model
 {
+    use LogsActivity;
+
     protected $table = 'unidades';
 
     protected $fillable = [
@@ -44,5 +48,12 @@ class Unidad extends Model
 
             $unidad->slug = $slug;
         });
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['nombre', 'tipo', 'responsable', 'descripcion', 'correo', 'telefono', 'orden', 'activo'])
+            ->setDescriptionForEvent(fn(string $eventName) => "Unidad {$eventName}");
     }
 }
