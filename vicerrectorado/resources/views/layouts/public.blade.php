@@ -41,11 +41,10 @@
                         </a>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-lg font-bold text-gray-900">Vicerrectorado Académico</span>
-                        <span class="text-xs text-gray-600">UNASAM</span>
+                        <span class="text-lg font-bold text-gray-900">Vicerrectorado Académico VRA</span>
+                        <span class="text-xs text-gray-600">Universidad Nacional Santiago Antúnez de Mayolo</span>
                     </div>
                 </div>
-                
                 <!-- Menú Desktop -->
                 <div class="hidden lg:flex items-center space-x-1">
                     <a href="/" class="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">

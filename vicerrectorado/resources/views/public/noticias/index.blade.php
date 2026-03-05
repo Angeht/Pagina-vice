@@ -49,33 +49,37 @@
             </div>
         </div>
 
-        {{-- Grid de Noticias con tarjetas blancas como en home --}}
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {{-- Grid de Noticias estilo estructura --}}
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
             @foreach($noticias as $noticia)
-                <article class="reveal-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <a href="{{ route('noticias.show', $noticia) }}"
+                   class="group relative rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
+                    
+                    {{-- Efecto hover sutil --}}
+                    <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: radial-gradient(ellipse at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 75%);"></div>
+                    
                     {{-- Imagen de la noticia --}}
                     @if($noticia->imagen)
                         <div class="relative h-48 overflow-hidden">
                             <img src="{{ asset('storage/' . $noticia->imagen) }}"
                                 alt="{{ $noticia->titulo }}"
-                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             
+                            {{-- Icono flotante sobre la imagen --}}
+                            <div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                                </svg>
+                            </div>
+
                             {{-- Badge de categoría --}}
                             @if($noticia->categoria)
-                                <div class="absolute top-3 right-3">
-                                    <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full shadow-lg">{{ $noticia->categoria->nombre }}</span>
+                                <div class="absolute top-4 right-4">
+                                    <span class="px-3 py-1.5 bg-blue-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">{{ $noticia->categoria->nombre }}</span>
                                 </div>
                             @endif
-
-                            {{-- Fecha superpuesta --}}
-                            <div class="absolute bottom-3 left-3 bg-white rounded-lg px-3 py-2 shadow-lg">
-                                <div class="text-center">
-                                    <div class="text-2xl font-black text-blue-600">{{ $noticia->created_at->format('d') }}</div>
-                                    <div class="text-xs font-bold text-gray-600 uppercase">{{ $noticia->created_at->format('M') }}</div>
-                                </div>
-                            </div>
                         </div>
                     @else
                         <div class="relative h-48 bg-gradient-to-br from-slate-700 to-blue-700 flex items-center justify-center">
@@ -84,65 +88,56 @@
                             </svg>
                             {{-- Badge de categoría --}}
                             @if($noticia->categoria)
-                                <div class="absolute top-3 right-3">
-                                    <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-lg">{{ $noticia->categoria->nombre }}</span>
+                                <div class="absolute top-4 right-4">
+                                    <span class="px-3 py-1.5 bg-blue-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">{{ $noticia->categoria->nombre }}</span>
                                 </div>
                             @endif
-                            {{-- Fecha superpuesta --}}
-                            <div class="absolute bottom-3 left-3 bg-white rounded-lg px-3 py-2 shadow-lg">
-                                <div class="text-center">
-                                    <div class="text-2xl font-black text-blue-600">{{ $noticia->created_at->format('d') }}</div>
-                                    <div class="text-xs font-bold text-gray-600 uppercase">{{ $noticia->created_at->format('M') }}</div>
-                                </div>
-                            </div>
                         </div>
                     @endif
+                    
+                    <div class="relative p-6">
+                        {{-- Fecha y autor destacado --}}
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="flex-shrink-0 bg-blue-500/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-blue-400/30">
+                                <div class="text-center">
+                                    <div class="text-2xl font-black text-blue-300">{{ $noticia->created_at->format('d') }}</div>
+                                    <div class="text-xs font-bold text-blue-400 uppercase">{{ $noticia->created_at->format('M') }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 text-sm text-blue-300 font-semibold mb-1">
+                                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>{{ $noticia->created_at->format('d/m/Y') }}</span>
+                                </div>
+                                @if($noticia->autor || $noticia->categoria)
+                                    <div class="flex items-center gap-2 text-xs text-white/60">
+                                        <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                        </svg>
+                                        <span class="truncate">{{ $noticia->autor ?? 'Vicerrectorado Académico' }}</span>
+                                    </div>
+                                @endif
+                            </div>
 
-                    {{-- Contenido --}}
-                    <div class="p-5 relative">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                            <svg class="w-5 h-5 text-blue-300 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-3 leading-tight line-clamp-2">
                             {{ $noticia->titulo }}
                         </h3>
-                        
+
                         @if($noticia->resumen || $noticia->contenido)
-                            <p class="text-gray-600 text-sm mb-3 line-clamp-2">
-                                {{ \Illuminate\Support\Str::limit($noticia->resumen ?? strip_tags($noticia->contenido), 80) }}
+                            <p class="text-white/70 text-sm leading-relaxed line-clamp-2">
+                                {{ \Illuminate\Support\Str::limit($noticia->resumen ?? strip_tags($noticia->contenido), 100) }}
                             </p>
                         @endif
-
-                        {{-- Información adicional --}}
-                        <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <span>{{ $noticia->created_at->format('d/m/Y') }}</span>
-                        </div>
-
-                        {{-- Autor o categoría adicional --}}
-                        @if($noticia->autor || $noticia->categoria)
-                            <div class="flex items-center gap-2 text-xs text-blue-600 font-semibold mb-4">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                                </svg>
-                                <span>{{ $noticia->autor ?? $noticia->categoria->nombre ?? 'Vicerrectorado Académico' }}</span>
-                            </div>
-                        @endif
-
-                        {{-- Divisor --}}
-                        <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Leer artículo</span>
-                            
-                            {{-- Botón flecha institucional --}}
-                            <a href="{{ route('noticias.show', $noticia) }}" 
-                               class="group/arrow relative w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
-                                <svg class="w-5 h-5 text-white transform group-hover/arrow:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                                </svg>
-                                <div class="absolute inset-0 rounded-full bg-white opacity-0 group-hover/arrow:opacity-20 transition-opacity duration-300"></div>
-                            </a>
-                        </div>
                     </div>
-                </article>
+                </a>
             @endforeach
 
         </div>

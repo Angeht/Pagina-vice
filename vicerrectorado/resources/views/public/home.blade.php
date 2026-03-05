@@ -390,34 +390,38 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
             </a>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($eventosDestacados as $evento)
-                <article class="reveal-item group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <a href="{{ route('eventos.show', $evento->slug) }}"
+                   class="group relative rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
+                    
+                    {{-- Efecto hover sutil --}}
+                    <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: radial-gradient(ellipse at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 75%);"></div>
+                    
                     {{-- Imagen del evento --}}
                     @if($evento->imagen_portada)
                         <div class="relative h-48 overflow-hidden">
                             <img src="{{ asset('storage/' . $evento->imagen_portada) }}" 
                                  alt="{{ $evento->titulo }}"
-                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             
-                            {{-- Badge de estado --}}
-                            <div class="absolute top-3 right-3">
-                                @if($evento->estado === 'proximo')
-                                    <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full shadow-lg">Próximo</span>
-                                @elseif($evento->estado === 'en_curso')
-                                    <span class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">En curso</span>
-                                @else
-                                    <span class="px-3 py-1 bg-gray-500 text-white text-xs font-bold rounded-full shadow-lg">Finalizado</span>
-                                @endif
+                            {{-- Icono flotante sobre la imagen --}}
+                            <div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
                             </div>
 
-                            {{-- Fecha superpuesta --}}
-                            <div class="absolute bottom-3 left-3 bg-white rounded-lg px-3 py-2 shadow-lg">
-                                <div class="text-center">
-                                    <div class="text-2xl font-black text-blue-600">{{ $evento->fecha_inicio->format('d') }}</div>
-                                    <div class="text-xs font-bold text-gray-600 uppercase">{{ $evento->fecha_inicio->format('M') }}</div>
-                                </div>
+                            {{-- Badge de estado --}}
+                            <div class="absolute top-4 right-4">
+                                @if($evento->estado === 'proximo')
+                                    <span class="px-3 py-1.5 bg-blue-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">Próximo</span>
+                                @elseif($evento->estado === 'en_curso')
+                                    <span class="px-3 py-1.5 bg-green-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg animate-pulse">En curso</span>
+                                @else
+                                    <span class="px-3 py-1.5 bg-gray-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">Finalizado</span>
+                                @endif
                             </div>
                         </div>
                     @else
@@ -425,66 +429,62 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                             <svg class="w-16 h-16 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
-                            <div class="absolute top-3 right-3">
+                            <div class="absolute top-4 right-4">
                                 @if($evento->estado === 'proximo')
-                                    <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-lg">Próximo</span>
+                                    <span class="px-3 py-1.5 bg-blue-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">Próximo</span>
                                 @elseif($evento->estado === 'en_curso')
-                                    <span class="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">En curso</span>
+                                    <span class="px-3 py-1.5 bg-green-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg animate-pulse">En curso</span>
                                 @else
-                                    <span class="px-3 py-1 bg-gray-600 text-white text-xs font-bold rounded-full shadow-lg">Finalizado</span>
+                                    <span class="px-3 py-1.5 bg-gray-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">Finalizado</span>
                                 @endif
-                            </div>
-                            <div class="absolute bottom-3 left-3 bg-white rounded-lg px-3 py-2 shadow-lg">
-                                <div class="text-center">
-                                    <div class="text-2xl font-black text-blue-600">{{ $evento->fecha_inicio->format('d') }}</div>
-                                    <div class="text-xs font-bold text-gray-600 uppercase">{{ $evento->fecha_inicio->format('M') }}</div>
-                                </div>
                             </div>
                         </div>
                     @endif
+                    
+                    <div class="relative p-6">
+                        {{-- Fecha y hora destacada --}}
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="flex-shrink-0 bg-blue-500/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-blue-400/30">
+                                <div class="text-center">
+                                    <div class="text-2xl font-black text-blue-300">{{ $evento->fecha_inicio->format('d') }}</div>
+                                    <div class="text-xs font-bold text-blue-400 uppercase">{{ $evento->fecha_inicio->format('M') }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 text-sm text-blue-300 font-semibold mb-1">
+                                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>{{ $evento->fecha_inicio->format('H:i') }}</span>
+                                </div>
+                                @if($evento->lugar)
+                                    <div class="flex items-center gap-2 text-xs text-white/60">
+                                        <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        <span class="truncate">{{ \Illuminate\Support\Str::limit($evento->lugar, 30) }}</span>
+                                    </div>
+                                @endif
+                            </div>
 
-                    {{-- Contenido --}}
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                            {{ $evento->titulo }}
-                        </h3>
-                        
-                        @if($evento->descripcion)
-                            <p class="text-gray-600 text-sm mb-3 line-clamp-2">
-                                {{ \Illuminate\Support\Str::limit($evento->descripcion, 80) }}
-                            </p>
-                        @endif
-
-                        {{-- Información adicional --}}
-                        <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
-                            @if($evento->lugar)
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                                <span class="line-clamp-1">{{ $evento->lugar }}</span>
-                            @endif
-                        </div>
-
-                        {{-- Horario --}}
-                        <div class="flex items-center gap-2 text-xs text-blue-600 font-semibold mb-4">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <span>{{ $evento->fecha_inicio->format('H:i') }}</span>
-                        </div>
-
-        
-
-                        {{-- Botón --}}
-                        <a href="{{ route('eventos.show', $evento->slug) }}" class="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm">
-                            Ver detalles
-                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-blue-300 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
-                        </a>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-3 leading-tight line-clamp-2">
+                            {{ $evento->titulo }}
+                        </h3>
+
+                        @if($evento->descripcion)
+                            <p class="text-white/70 text-sm leading-relaxed line-clamp-2">
+                                {{ \Illuminate\Support\Str::limit($evento->descripcion, 100) }}
+                            </p>
+                        @endif
                     </div>
-                </article>
+                </a>
             @endforeach
         </div>
 
