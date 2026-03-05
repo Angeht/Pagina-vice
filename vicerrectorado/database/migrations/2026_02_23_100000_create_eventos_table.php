@@ -6,29 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('documentos_academicos', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
             $table->string('slug')->unique();
-            $table->string('tipo');
             $table->text('descripcion')->nullable();
-            $table->string('archivo')->nullable();
-            $table->date('fecha_publicacion')->nullable();
+            $table->longText('contenido')->nullable();
+            $table->dateTime('fecha_inicio')->nullable();
+            $table->dateTime('fecha_fin')->nullable();
+            $table->string('lugar')->nullable();
+            $table->string('imagen_portada')->nullable();
             $table->boolean('activo')->default(true);
+            $table->boolean('destacado')->default(false);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('documento_academicos');
+        Schema::dropIfExists('eventos');
     }
 };

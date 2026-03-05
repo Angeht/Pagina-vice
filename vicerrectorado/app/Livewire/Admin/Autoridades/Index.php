@@ -36,22 +36,22 @@ class Index extends Component
     {
         $this->validate();
 
-        $fotoPath = null;
+        $data = [
+            'nombre' => $this->nombre,
+            'cargo' => $this->cargo,
+            'descripcion' => $this->descripcion,
+            'orden' => $this->orden ?? 0,
+            'activo' => $this->activo,
+        ];
 
+        // Solo actualizar foto si se subió una nueva
         if ($this->foto) {
-            $fotoPath = $this->foto->store('autoridades', 'public');
+            $data['foto'] = $this->foto->store('autoridades', 'public');
         }
 
         Autoridad::updateOrCreate(
             ['id' => $this->autoridadId],
-            [
-                'nombre' => $this->nombre,
-                'cargo' => $this->cargo,
-                'descripcion' => $this->descripcion,
-                'foto' => $fotoPath,
-                'orden' => $this->orden ?? 0,
-                'activo' => $this->activo,
-            ]
+            $data
         );
 
         session()->flash('message', 'Autoridad guardada correctamente.');

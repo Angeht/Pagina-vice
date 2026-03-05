@@ -25,6 +25,10 @@
                 class="block px-4 py-2 rounded hover:bg-slate-700">
                     Configuración Banner
             </a>
+            <a href="{{ route('admin.vicerrector') }}"
+                class="block px-4 py-2 rounded hover:bg-slate-700">
+                    Sección Vicerrector
+            </a>
             <a href="{{ route('admin.autoridades') }}"
                 class="block px-4 py-2 rounded hover:bg-slate-700">
                     Autoridades
@@ -32,10 +36,6 @@
             <a href="{{ route('admin.noticias') }}"
                 class="block px-4 py-2 rounded hover:bg-slate-700">
                 Noticias
-            </a>
-            <a href="#"
-               class="block px-4 py-2 rounded hover:bg-slate-700">
-                Documentos
             </a>
             <a href="{{ route('admin.categorias') }}"
                 class="block px-4 py-2 rounded hover:bg-slate-700">
@@ -53,9 +53,21 @@
                 class="block px-4 py-2 rounded hover:bg-slate-700">
                     Convocatorias
             </a>
-            <a href="{{ route('admin.logs') }}"
+            <a href="{{ route('admin.eventos') }}"
+                class="block px-4 py-2 rounded hover:bg-slate-700">
+                Eventos
+            </a>
+            <a href="{{ route('admin.galeria') }}"
+                class="block px-4 py-2 rounded hover:bg-slate-700">
+                Galería de Imágenes
+            </a>
+            <a href="{{ route('admin.usuarios') }}"
                 class="block px-4 py-2 rounded hover:bg-slate-700 border-t border-slate-700 mt-2 pt-4">
-                    📋 Logs de Auditoría
+                Usuarios
+            </a>
+            <a href="{{ route('admin.logs') }}"
+                class="block px-4 py-2 rounded hover:bg-slate-700">
+                Logs de Auditoría
             </a>
         </nav>
         <div class="p-4 border-t border-slate-700 text-sm space-y-2">

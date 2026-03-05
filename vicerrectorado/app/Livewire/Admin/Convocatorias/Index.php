@@ -38,23 +38,23 @@ class Index extends Component
     {
         $this->validate();
 
-        $archivoPath = null;
+        $data = [
+            'titulo' => $this->titulo,
+            'tipo' => $this->tipo,
+            'descripcion' => $this->descripcion,
+            'fecha_inicio' => $this->fecha_inicio,
+            'fecha_cierre' => $this->fecha_cierre,
+            'activo' => $this->activo,
+        ];
 
+        // Solo actualizar archivo si se subió uno nuevo
         if ($this->archivo) {
-            $archivoPath = $this->archivo->store('convocatorias', 'public');
+            $data['archivo'] = $this->archivo->store('convocatorias', 'public');
         }
 
         Convocatoria::updateOrCreate(
             ['id' => $this->convocatoriaId],
-            [
-                'titulo' => $this->titulo,
-                'tipo' => $this->tipo,
-                'descripcion' => $this->descripcion,
-                'fecha_inicio' => $this->fecha_inicio,
-                'fecha_cierre' => $this->fecha_cierre,
-                'archivo' => $archivoPath,
-                'activo' => $this->activo,
-            ]
+            $data
         );
 
         session()->flash('message', 'Convocatoria guardada correctamente.');

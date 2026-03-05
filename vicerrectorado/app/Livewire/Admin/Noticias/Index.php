@@ -24,30 +24,36 @@ class Index extends Component
     public $titulo, $resumen, $contenido, $publicado = false;
     public $noticiaId = null;
 
-    protected $rules = [
-        'titulo' => 'required|string|max:255',
-        'contenido' => 'required',
-    ];
+    protected function rules()
+    {
+        return [
+            'titulo' => 'required|string|max:255',
+            'contenido' => 'required',
+            'imagen' => 'nullable|image|max:2048',
+        ];
+    }
 
     public function guardar()
     {
-        $imagenPath = null;
+        $this->validate();
 
+        $data = [
+            'titulo' => $this->titulo,
+            'resumen' => $this->resumen,
+            'contenido' => $this->contenido,
+            'publicado' => $this->publicado,
+            'user_id' => Auth::id(),
+            'categoria_id' => $this->categoria_id,
+        ];
+
+        // Solo actualizar imagen si se subió una nueva
         if ($this->imagen) {
-            $imagenPath = $this->imagen->store('noticias', 'public');
+            $data['imagen'] = $this->imagen->store('noticias', 'public');
         }
 
         Noticia::updateOrCreate(
             ['id' => $this->noticiaId],
-            [
-                'titulo' => $this->titulo,
-                'resumen' => $this->resumen,
-                'contenido' => $this->contenido,
-                'publicado' => $this->publicado,
-                'imagen' => $imagenPath,
-                'user_id' => Auth::id(),
-                'categoria_id' => $this->categoria_id,
-            ]
+            $data
         );
 
         $this->reset(['titulo', 'resumen', 'contenido', 'publicado', 'noticiaId', 'imagen', 'categoria_id']);

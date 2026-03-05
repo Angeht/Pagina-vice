@@ -49,11 +49,27 @@
                 <span>Activo</span>
             </label>
 
-            <input type="file" wire:model="imagen">
-
-            @if($imagen)
-                <img src="{{ $imagen->temporaryUrl() }}" class="w-32 mt-2 rounded">
-            @endif
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Imagen de la Oficina</label>
+                <input type="file" wire:model="imagen" accept="image/*" class="w-full">
+                
+                @if($imagen)
+                    <div class="mt-3">
+                        <p class="text-sm text-gray-600 mb-2">Vista previa:</p>
+                        <img src="{{ $imagen->temporaryUrl() }}" class="w-48 h-32 object-cover rounded-lg shadow-md">
+                    </div>
+                @elseif($unidadId)
+                    @php
+                        $unidadActual = \App\Models\Unidad::find($unidadId);
+                    @endphp
+                    @if($unidadActual && $unidadActual->imagen)
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-600 mb-2">Imagen actual:</p>
+                            <img src="{{ asset('storage/' . $unidadActual->imagen) }}" class="w-48 h-32 object-cover rounded-lg shadow-md">
+                        </div>
+                    @endif
+                @endif
+            </div>
 
             <button class="px-4 py-2 bg-blue-600 text-white rounded">
                 {{ $unidadId ? 'Actualizar' : 'Guardar' }}

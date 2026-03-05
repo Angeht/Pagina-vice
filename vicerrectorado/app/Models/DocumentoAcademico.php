@@ -19,7 +19,6 @@ class DocumentoAcademico extends Model
         'descripcion',
         'archivo',
         'fecha_publicacion',
-        'orden',
         'activo',
     ];
 

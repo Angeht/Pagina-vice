@@ -39,25 +39,25 @@ class Index extends Component
     {
         $this->validate();
 
-        $imagenPath = null;
+        $data = [
+            'nombre' => $this->nombre,
+            'tipo' => $this->tipo,
+            'responsable' => $this->responsable,
+            'descripcion' => $this->descripcion,
+            'correo' => $this->correo,
+            'telefono' => $this->telefono,
+            'orden' => $this->orden ?? 0,
+            'activo' => $this->activo,
+        ];
 
+        // Solo actualizar imagen si se subió una nueva
         if ($this->imagen) {
-            $imagenPath = $this->imagen->store('unidades', 'public');
+            $data['imagen'] = $this->imagen->store('unidades', 'public');
         }
 
         Unidad::updateOrCreate(
             ['id' => $this->unidadId],
-            [
-                'nombre' => $this->nombre,
-                'tipo' => $this->tipo,
-                'responsable' => $this->responsable,
-                'descripcion' => $this->descripcion,
-                'correo' => $this->correo,
-                'telefono' => $this->telefono,
-                'imagen' => $imagenPath,
-                'orden' => $this->orden ?? 0,
-                'activo' => $this->activo,
-            ]
+            $data
         );
 
         session()->flash('message', 'Unidad guardada correctamente.');
