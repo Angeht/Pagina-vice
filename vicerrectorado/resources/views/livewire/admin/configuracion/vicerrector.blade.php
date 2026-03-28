@@ -1,4 +1,4 @@
-<div class="max-w-3xl mx-auto">
+﻿<div class="max-w-3xl mx-auto">
     <h1 class="text-2xl font-bold text-gray-800 mb-2">Sección: Conociendo al Vicerrector Académico</h1>
     <p class="text-gray-500 text-sm mb-6">Esta información se muestra en la página principal del sitio.</p>
 
@@ -8,19 +8,13 @@
         </div>
     @endif
 
-    <div class="bg-white rounded-xl shadow-md p-6 space-y-5">
-
-        {{-- Nombre --}}
-        <div>
+    <div class="bg-white rounded-xl shadow-md p-6 space-y-5"><div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
             <input wire:model="nombre" type="text"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Ej: Dr. Juan Carlos Pérez López">
             @error('nombre') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-        </div>
-
-        {{-- Texto de presentación --}}
-        <div>
+        </div><div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Texto de presentación</label>
             <p class="text-xs text-gray-400 mb-2">Aparecerá como párrafo descriptivo junto a la foto.</p>
             <textarea wire:model="texto_presentacion" rows="7"
@@ -30,20 +24,14 @@
                 {{ strlen($texto_presentacion ?? '') }} / 3000 caracteres
             </div>
             @error('texto_presentacion') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-        </div>
-
-        {{-- Cita destacada --}}
-        <div>
+        </div><div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Cita o frase destacada (opcional)</label>
             <p class="text-xs text-gray-400 mb-2">Se mostrará en un bloque especial con viñeta de cita.</p>
             <textarea wire:model="cita" rows="3"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder='"La excelencia académica es el pilar fundamental de nuestra labor."'></textarea>
             @error('cita') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-        </div>
-
-        {{-- Imagen --}}
-        <div>
+        </div><div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Fotografía oficial</label>
             <p class="text-xs text-gray-400 mb-2">Recomendado: foto vertical (portrait), mínimo 400×500px. Máx. 3 MB.</p>
             <input wire:model="imagen" type="file" accept="image/*"
@@ -53,10 +41,7 @@
                 Cargando imagen...
             </div>
 
-            @error('imagen') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-
-            {{-- Preview temporal --}}
-            @if($imagen)
+            @error('imagen') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror@if($imagen)
                 <div class="mt-3 relative inline-block">
                     <img src="{{ $imagen->temporaryUrl() }}" class="h-52 rounded-xl border shadow object-cover">
                     <button type="button" wire:click="limpiarImagen"
@@ -70,19 +55,13 @@
                     <img src="{{ asset('storage/' . $imagen_actual) }}" class="h-52 rounded-xl border shadow object-cover">
                 </div>
             @endif
-        </div>
-
-        {{-- Botón guardar --}}
-        <div class="pt-2 border-t">
+        </div><div class="pt-2 border-t">
             <button wire:click="guardar"
                 class="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium shadow">
                 Guardar cambios
             </button>
         </div>
-    </div>
-
-    {{-- Preview --}}
-    @if($nombre || $imagen_actual)
+    </div>@if($nombre || $imagen_actual)
     <div class="mt-8">
         <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Vista previa</h2>
         <div class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-xl p-6 flex gap-6 items-start shadow-sm">

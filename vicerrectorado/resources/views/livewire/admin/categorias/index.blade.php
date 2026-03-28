@@ -1,20 +1,14 @@
-<div class="container mx-auto">
+﻿<div class="container mx-auto">
 
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-900">
             Gestión de Categorías
         </h1>
-    </div>
-
-    {{-- Mensaje --}}
-    @if (session()->has('message'))
+    </div>@if (session()->has('message'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
             {{ session('message') }}
         </div>
-    @endif
-
-    {{-- Formulario --}}
-    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+    @endif<div class="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 class="text-xl font-semibold mb-4">
             {{ $categoriaId ? 'Editar Categoría' : 'Nueva Categoría' }}
         </h2>
@@ -49,10 +43,7 @@
                 @endif
             </div>
         </form>
-    </div>
-
-    {{-- Tabla --}}
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    </div><div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 bg-gray-50 border-b">
             <h2 class="text-xl font-semibold">
                 Categorías registradas

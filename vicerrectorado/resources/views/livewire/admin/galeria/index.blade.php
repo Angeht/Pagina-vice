@@ -1,7 +1,4 @@
-<div class="max-w-6xl mx-auto">
-
-    {{-- Header --}}
-    <div class="flex items-center justify-between mb-8">
+﻿<div class="max-w-6xl mx-auto"><div class="flex items-center justify-between mb-8">
         <div>
             <h1 class="text-3xl font-bold text-gray-900">🖼️ Galería de Imágenes</h1>
             <p class="text-gray-500 mt-1">Administra las imágenes del carrusel en la página principal.</p>
@@ -10,41 +7,28 @@
            class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition text-sm font-medium">
             ← Dashboard
         </a>
-    </div>
-
-    {{-- Mensaje de éxito --}}
-    @if(session('message'))
+    </div>@if(session('message'))
         <div class="mb-6 px-4 py-3 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm font-medium flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
             {{ session('message') }}
         </div>
-    @endif
-
-    {{-- ── PANEL SUBIR IMÁGENES ───────────────────────────────────── --}}
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
+    @endif<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
         <h2 class="text-lg font-bold text-gray-800 mb-4">➕ Subir Nuevas Imágenes</h2>
 
-        <div class="grid md:grid-cols-2 gap-4 mb-4">
-            {{-- Título (opcional) --}}
-            <div>
+        <div class="grid md:grid-cols-2 gap-4 mb-4"><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Título (opcional)</label>
                 <input wire:model="nuevoTitulo" type="text" placeholder="Ej: Ceremonia de Graduación"
                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 @error('nuevoTitulo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-            {{-- Descripción (opcional) --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Descripción (opcional)</label>
                 <input wire:model="nuevaDescripcion" type="text" placeholder="Breve descripción..."
                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 @error('nuevaDescripcion') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
-        </div>
-
-        {{-- Selector de archivos múltiples --}}
-        <div class="mb-4">
+        </div><div class="mb-4">
             <label class="block text-sm font-medium text-gray-700 mb-1">Imágenes <span class="text-red-500">*</span></label>
             <label class="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-blue-300 rounded-xl cursor-pointer bg-blue-50 hover:bg-blue-100 transition">
                 <svg class="w-10 h-10 text-blue-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,10 +46,7 @@
             </label>
             @error('nuevasImagenes') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             @error('nuevasImagenes.*') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-        </div>
-
-        {{-- Preview de imágenes seleccionadas --}}
-        @if(count($nuevasImagenes) > 0)
+        </div>@if(count($nuevasImagenes) > 0)
             <div class="flex flex-wrap gap-3 mb-4">
                 @foreach($nuevasImagenes as $img)
                     @if(!is_string($img))
@@ -74,10 +55,7 @@
                     @endif
                 @endforeach
             </div>
-        @endif
-
-        {{-- Botón guardar --}}
-        <div class="flex items-center gap-3">
+        @endif<div class="flex items-center gap-3">
             <button wire:click="guardar" wire:loading.attr="disabled"
                     class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-sm transition shadow-sm disabled:opacity-60">
                 <span wire:loading.remove wire:target="guardar">⬆️ Subir Imágenes</span>
@@ -85,10 +63,7 @@
             </button>
             <div wire:loading wire:target="nuevasImagenes" class="text-sm text-blue-500">Cargando previsualización...</div>
         </div>
-    </div>
-
-    {{-- ── LISTADO DE IMÁGENES ───────────────────────────────────────── --}}
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+    </div><div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
         <div class="flex items-center justify-between mb-5">
             <h2 class="text-lg font-bold text-gray-800">📋 Imágenes del Carrusel ({{ $imagenes->count() }})</h2>
             @if($imagenes->count() > 0)
@@ -106,20 +81,12 @@
         @else
             <div class="space-y-4">
                 @foreach($imagenes as $imagen)
-                    <div class="flex gap-4 items-start p-4 rounded-xl border border-gray-100 hover:bg-gray-50 transition">
-
-                        {{-- Miniatura --}}
-                        <div class="flex-shrink-0">
+                    <div class="flex gap-4 items-start p-4 rounded-xl border border-gray-100 hover:bg-gray-50 transition"><div class="flex-shrink-0">
                             <img src="{{ asset('storage/' . $imagen->imagen) }}"
                                  alt="{{ $imagen->titulo }}"
                                  class="w-28 h-20 object-cover rounded-lg shadow-sm border border-gray-200">
-                        </div>
-
-                        {{-- Info / Edición --}}
-                        <div class="flex-1 min-w-0">
-                            @if($editandoId === $imagen->id)
-                                {{-- Modo edición --}}
-                                <div class="space-y-2">
+                        </div><div class="flex-1 min-w-0">
+                            @if($editandoId === $imagen->id)<div class="space-y-2">
                                     <input wire:model="editTitulo" type="text" placeholder="Título..."
                                            class="w-full border border-blue-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     @error('editTitulo') <p class="text-red-500 text-xs">{{ $message }}</p> @enderror
@@ -137,9 +104,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            @else
-                                {{-- Modo vista --}}
-                                <div class="flex items-start justify-between gap-2">
+                            @else<div class="flex items-start justify-between gap-2">
                                     <div>
                                         <p class="font-semibold text-gray-900 text-sm">
                                             {{ $imagen->titulo ?: '(sin título)' }}
@@ -148,34 +113,21 @@
                                             <p class="text-gray-500 text-xs mt-0.5 line-clamp-2">{{ $imagen->descripcion }}</p>
                                         @endif
                                         <p class="text-gray-400 text-[10px] mt-1">Orden: {{ $imagen->orden }}</p>
-                                    </div>
-                                    {{-- Badge activo --}}
-                                    <span class="{{ $imagen->activo ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500' }} px-2 py-0.5 rounded-full text-[10px] font-bold uppercase whitespace-nowrap">
+                                    </div><span class="{{ $imagen->activo ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500' }} px-2 py-0.5 rounded-full text-[10px] font-bold uppercase whitespace-nowrap">
                                         {{ $imagen->activo ? 'Visible' : 'Oculta' }}
                                     </span>
                                 </div>
                             @endif
-                        </div>
-
-                        {{-- Acciones --}}
-                        <div class="flex-shrink-0 flex flex-col gap-1.5">
-                            {{-- Reordenar --}}
-                            <div class="flex gap-1">
+                        </div><div class="flex-shrink-0 flex flex-col gap-1.5"><div class="flex gap-1">
                                 <button wire:click="subirOrden({{ $imagen->id }})" title="Subir"
                                         class="p-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-600 transition text-xs font-bold">↑</button>
                                 <button wire:click="bajarOrden({{ $imagen->id }})" title="Bajar"
                                         class="p-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-600 transition text-xs font-bold">↓</button>
-                            </div>
-                            {{-- Toggle activo --}}
-                            <button wire:click="toggleActivo({{ $imagen->id }})" title="{{ $imagen->activo ? 'Ocultar' : 'Mostrar' }}"
+                            </div><button wire:click="toggleActivo({{ $imagen->id }})" title="{{ $imagen->activo ? 'Ocultar' : 'Mostrar' }}"
                                     class="{{ $imagen->activo ? 'bg-green-100 hover:bg-green-200 text-green-700' : 'bg-gray-100 hover:bg-gray-200 text-gray-600' }} p-1.5 rounded-lg transition text-xs font-bold">
                                 {{ $imagen->activo ? '👁' : '🚫' }}
-                            </button>
-                            {{-- Editar --}}
-                            <button wire:click="editar({{ $imagen->id }})" title="Editar"
-                                    class="p-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition text-xs font-bold">✏️</button>
-                            {{-- Eliminar --}}
-                            @if($eliminandoId === $imagen->id)
+                            </button><button wire:click="editar({{ $imagen->id }})" title="Editar"
+                                    class="p-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition text-xs font-bold">✏️</button>@if($eliminandoId === $imagen->id)
                                 <div class="flex gap-1">
                                     <button wire:click="eliminar"
                                             class="p-1.5 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 transition">¿Sí?</button>

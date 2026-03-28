@@ -1,29 +1,14 @@
-<x-public-layout>
-
-{{-- Fondo oscuro institucional --}}
-<div class="relative overflow-hidden min-h-screen" style="background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.92) 30%, rgba(30,58,138,0.90) 60%, rgba(15,23,42,0.93) 100%);">
-    
-    {{-- Decoración de fondo --}}
-    <div class="absolute inset-0 pointer-events-none">
+﻿<x-public-layout><div class="relative overflow-hidden min-h-screen" style="background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.92) 30%, rgba(30,58,138,0.90) 60%, rgba(15,23,42,0.93) 100%);"><div class="absolute inset-0 pointer-events-none">
         <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 50px 50px;"></div>
         <div class="absolute top-0 right-0 w-1/2 h-full" style="background: radial-gradient(ellipse at 80% 30%, rgba(59,130,246,0.15) 0%, transparent 65%);"></div>
-    </div>
+    </div><div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full opacity-15 blur-3xl pointer-events-none"></div>
 
-    {{-- Círculos decorativos --}}
-    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full opacity-15 blur-3xl pointer-events-none"></div>
-
-    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-
-        {{-- Botón volver --}}
-        <a href="{{ route('eventos.index') }}" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 mb-8 transition-colors duration-300">
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20"><a href="{{ route('eventos.index') }}" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 mb-8 transition-colors duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
             <span class="font-semibold">Volver a eventos</span>
-        </a>
-
-        {{-- Badges de estado --}}
-        <div class="flex flex-wrap gap-2 mb-6">
+        </a><div class="flex flex-wrap gap-2 mb-6">
             @php 
                 $estado = $evento->estado;
                 $badgeConfig = match($estado) {
@@ -49,29 +34,17 @@
                     Destacado
                 </span>
             @endif
-        </div>
-
-        {{-- Título --}}
-        <h1 class="text-4xl md:text-5xl font-black text-white leading-tight mb-8" style="letter-spacing: -1px;">
+        </div><h1 class="text-4xl md:text-5xl font-black text-white leading-tight mb-8" style="letter-spacing: -1px;">
             {{ $evento->titulo }}
         </h1>
 
-        <div class="grid lg:grid-cols-3 gap-8">
-
-            {{-- Contenido principal --}}
-            <div class="lg:col-span-2 space-y-8">
-                
-                {{-- Imagen portada --}}
-                @if($evento->imagen_portada)
+        <div class="grid lg:grid-cols-3 gap-8"><div class="lg:col-span-2 space-y-8">@if($evento->imagen_portada)
                     <div class="rounded-2xl overflow-hidden shadow-2xl">
                         <img src="{{ asset('storage/' . $evento->imagen_portada) }}"
                              alt="{{ $evento->titulo }}"
                              class="w-full object-cover max-h-96">
                     </div>
-                @endif
-
-                {{-- Descripción --}}
-                @if($evento->descripcion)
+                @endif@if($evento->descripcion)
                     <div class="rounded-2xl overflow-hidden" style="background: rgba(59,130,246,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(59,130,246,0.2);">
                         <div class="p-6">
                             <div class="flex gap-3">
@@ -84,10 +57,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
-
-                {{-- Contenido detallado --}}
-                @if($evento->contenido)
+                @endif@if($evento->contenido)
                     <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
                         <div class="p-8">
                             <h2 class="text-2xl font-bold text-white mb-4">Detalles del Evento</h2>
@@ -98,13 +68,7 @@
                     </div>
                 @endif
 
-            </div>
-
-            {{-- Sidebar con información --}}
-            <div class="space-y-6">
-                
-                {{-- Información del evento --}}
-                <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
+            </div><div class="space-y-6"><div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-white mb-4">Información</h3>
 
@@ -151,10 +115,7 @@
                             </div>
                         @endif
                     </div>
-                </div>
-
-                {{-- Compartir en redes sociales --}}
-                <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
+                </div><div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
                     <div class="p-6">
                         <h3 class="text-lg font-bold text-white mb-3">Compartir</h3>
                         <div class="flex gap-2">
@@ -174,10 +135,7 @@
 
             </div>
 
-        </div>
-
-        {{-- GALERÍA DE FOTOS --}}
-        @if($evento->galeria->count())
+        </div>@if($evento->galeria->count())
             <section class="mt-16">
                 <div class="flex items-center gap-3 mb-8">
                     <div class="w-1 h-8 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full"></div>
@@ -211,10 +169,7 @@
                             @endif
                         </div>
                     @endforeach
-                </div>
-
-                {{-- Lightbox modal --}}
-                <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-4" onclick="closeLightbox(event)">
+                </div><div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-4" onclick="closeLightbox(event)">
                     <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/80 hover:text-white text-4xl font-bold leading-none transition-colors duration-300 z-10">×</button>
                     <button onclick="event.stopPropagation(); prevImg();" class="absolute left-6 text-white/80 hover:text-white text-5xl font-bold leading-none select-none transition-colors duration-300 z-10">‹</button>
                     <button onclick="event.stopPropagation(); nextImg();" class="absolute right-20 text-white/80 hover:text-white text-5xl font-bold leading-none select-none transition-colors duration-300 z-10">›</button>
@@ -268,10 +223,7 @@
                 });
                 </script>
             </section>
-        @endif
-
-        {{-- Otros eventos relacionados --}}
-        @if($otrosEventos->count())
+        @endif@if($otrosEventos->count())
             <section class="mt-16">
                 <div class="flex items-center gap-3 mb-8">
                     <div class="w-1 h-8 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>

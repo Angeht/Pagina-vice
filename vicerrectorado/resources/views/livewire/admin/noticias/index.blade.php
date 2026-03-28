@@ -1,28 +1,19 @@
-<div class="container mx-auto">
+﻿<div class="container mx-auto">
 
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-900">
             Gestión de Noticias
         </h1>
-    </div>
-
-    {{-- Mensaje éxito --}}
-    @if (session()->has('message'))
+    </div>@if (session()->has('message'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
             {{ session('message') }}
         </div>
-    @endif
-
-    {{-- Formulario --}}
-    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+    @endif<div class="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 class="text-xl font-semibold mb-4">
             {{ $noticiaId ? 'Editar Noticia' : 'Nueva Noticia' }}
         </h2>
 
-        <form wire:submit.prevent="guardar" class="space-y-4">
-
-            {{-- Título --}}
-            <div>
+        <form wire:submit.prevent="guardar" class="space-y-4"><div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     Título *
                 </label>
@@ -34,10 +25,7 @@
                 @error('titulo')
                     <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                 @enderror
-            </div>
-
-            {{-- Resumen --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     Resumen
                 </label>
@@ -46,10 +34,7 @@
                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                           placeholder="Breve resumen">
                 </textarea>
-            </div>
-
-            {{-- Contenido --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     Contenido *
                 </label>
@@ -62,10 +47,7 @@
                 @error('contenido')
                     <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                 @enderror
-            </div>
-
-            {{-- Categoría --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     Categoría
                 </label>
@@ -90,10 +72,7 @@
 
                 @error('imagen')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-
-                {{-- Preview --}}
-                @if ($imagen)
+                @enderror@if ($imagen)
                     <div class="mt-4 relative inline-block">
                         <img src="{{ $imagen->temporaryUrl() }}"
                             class="w-40 rounded border">
@@ -107,20 +86,14 @@
                         </button>
                     </div>
                 @endif
-            </div>
-
-            {{-- Publicado --}}
-            <div class="flex items-center">
+            </div><div class="flex items-center">
                 <input type="checkbox"
                        wire:model="publicado"
                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                 <span class="ml-2 text-sm text-gray-700">
                     Publicar inmediatamente
                 </span>
-            </div>
-
-            {{-- Botones --}}
-            <div class="flex gap-3">
+            </div><div class="flex gap-3">
                 <button type="submit"
                         class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                     {{ $noticiaId ? 'Actualizar' : 'Guardar' }}
@@ -136,10 +109,7 @@
             </div>
 
         </form>
-    </div>
-
-    {{-- Tabla --}}
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    </div><div class="bg-white rounded-lg shadow-md overflow-hidden">
 
         <div class="px-6 py-4 bg-gray-50 border-b">
             <h2 class="text-xl font-semibold">
@@ -223,10 +193,7 @@
                 </tbody>
 
             </table>
-        </div>
-
-        {{-- PAGINACIÓN --}}
-        @if($noticias->hasPages())
+        </div>@if($noticias->hasPages())
             <div class="px-6 py-4 bg-gray-50 border-t">
                 {{ $noticias->links() }}
             </div>

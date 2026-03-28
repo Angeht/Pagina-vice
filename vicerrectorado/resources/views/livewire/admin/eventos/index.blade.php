@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto">
+﻿<div class="max-w-7xl mx-auto">
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-bold text-gray-800">Eventos y Momentos Destacados</h1>
         <button wire:click="nuevoEvento"
@@ -11,35 +11,24 @@
         <div class="mb-4 px-4 py-3 bg-green-100 border border-green-400 text-green-800 rounded-lg">
             {{ session('message') }}
         </div>
-    @endif
-
-    {{-- ═══════════════════════════════════ FORMULARIO ══════════════════════════════════ --}}
-    @if($mostrarFormulario)
+    @endif@if($mostrarFormulario)
     <div class="bg-white rounded-xl shadow-md p-6 mb-6">
         <h2 class="text-lg font-semibold text-gray-700 mb-4">
             {{ $eventoId ? 'Editar Evento' : 'Nuevo Evento' }}
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {{-- Título --}}
-            <div class="md:col-span-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Título *</label>
                 <input wire:model="titulo" type="text"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Nombre del evento">
                 @error('titulo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            {{-- Lugar --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Lugar</label>
                 <input wire:model="lugar" type="text"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Lugar del evento">
-            </div>
-
-            {{-- Imagen portada --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Imagen de Portada</label>
                 <input wire:model="imagen_portada" type="file" accept="image/*"
                     class="w-full text-sm text-gray-600 border border-gray-300 rounded-lg px-3 py-2">
@@ -47,42 +36,27 @@
                 @if($imagen_portada && !is_string($imagen_portada))
                     <img src="{{ $imagen_portada->temporaryUrl() }}" class="mt-2 h-20 rounded object-cover">
                 @endif
-            </div>
-
-            {{-- Fecha inicio --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Fecha y Hora de Inicio</label>
                 <input wire:model="fecha_inicio" type="datetime-local"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 @error('fecha_inicio') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            {{-- Fecha fin --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Fecha y Hora de Fin</label>
                 <input wire:model="fecha_fin" type="datetime-local"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 @error('fecha_fin') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            {{-- Descripción corta --}}
-            <div class="md:col-span-2">
+            </div><div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Descripción Corta</label>
                 <textarea wire:model="descripcion" rows="3"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Breve descripción del evento..."></textarea>
-            </div>
-
-            {{-- Contenido --}}
-            <div class="md:col-span-2">
+            </div><div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Contenido Detallado</label>
                 <textarea wire:model="contenido" rows="6"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Descripción completa del evento, programa, ponentes, etc."></textarea>
-            </div>
-
-            {{-- Switches --}}
-            <div class="flex items-center gap-6">
+            </div><div class="flex items-center gap-6">
                 <label class="flex items-center gap-2 cursor-pointer">
                     <input wire:model="activo" type="checkbox" class="rounded text-blue-600">
                     <span class="text-sm font-medium text-gray-700">Activo (visible en web)</span>
@@ -105,10 +79,7 @@
             </button>
         </div>
     </div>
-    @endif
-
-    {{-- ═══════════════════════════════════ PANEL GALERÍA ═══════════════════════════════ --}}
-    @if($galeriaEventoId)
+    @endif@if($galeriaEventoId)
     <div class="bg-white rounded-xl shadow-md p-6 mb-6 border-l-4 border-purple-500">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-lg font-semibold text-gray-700">
@@ -122,10 +93,7 @@
             <div class="mb-3 px-4 py-2 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
                 {{ session('galeriaMessage') }}
             </div>
-        @endif
-
-        {{-- Subir nueva imagen --}}
-        <div class="flex flex-wrap items-end gap-4 mb-5 p-4 bg-purple-50 rounded-lg">
+        @endif<div class="flex flex-wrap items-end gap-4 mb-5 p-4 bg-purple-50 rounded-lg">
             <div class="flex-1 min-w-48">
                 <label class="block text-xs font-medium text-gray-600 mb-1">Seleccionar imagen</label>
                 <input wire:model="nuevaImagenGaleria" type="file" accept="image/*"
@@ -142,15 +110,9 @@
                 class="px-5 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm font-medium">
                 Subir Foto
             </button>
-        </div>
-
-        {{-- Vista previa al subir --}}
-        @if($nuevaImagenGaleria && !is_string($nuevaImagenGaleria))
+        </div>@if($nuevaImagenGaleria && !is_string($nuevaImagenGaleria))
             <img src="{{ $nuevaImagenGaleria->temporaryUrl() }}" class="h-24 rounded object-cover mb-4 border">
-        @endif
-
-        {{-- Grid de imágenes de la galería --}}
-        @if($galeriaActual->count())
+        @endif@if($galeriaActual->count())
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             @foreach($galeriaActual as $img)
             <div class="relative group rounded-lg overflow-hidden border">
@@ -173,10 +135,7 @@
             <p class="text-center text-gray-400 py-6 text-sm">No hay imágenes en la galería aún. Sube la primera foto.</p>
         @endif
     </div>
-    @endif
-
-    {{-- ═══════════════════════════════════ LISTADO ══════════════════════════════════════ --}}
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+    @endif<div class="bg-white rounded-xl shadow-md overflow-hidden">
         <div class="p-4 border-b flex items-center gap-3">
             <input wire:model.live.debounce.300ms="busqueda" type="text"
                 placeholder="Buscar por título o lugar..."

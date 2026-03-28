@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\SystemController;
 use App\Livewire\Admin\Noticias\Index as NoticiasIndex;
 use App\Models\Noticia;
 use App\Livewire\Admin\Categorias\Index as CategoriasIndex;
@@ -154,7 +155,7 @@ Route::get('/', function () {
         })
         ->orderBy('orden')
         ->first();
-    
+
     // Si no encuentra por cargo, tomar el primero en orden
     if (!$vicerrectorAcademico) {
         $vicerrectorAcademico = \App\Models\Autoridad::where('activo', true)
@@ -245,6 +246,10 @@ Route::get('/eventos/{evento:slug}', function (Evento $evento) {
 Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->group(function () {
+
+        // Endpoint con información del sistema
+        Route::get('/system/info', [SystemController::class, 'info'])
+        ->name('admin.system.info');
 
         Route::get('/dashboard', function () {
             $stats = [

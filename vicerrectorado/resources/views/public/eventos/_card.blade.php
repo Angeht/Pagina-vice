@@ -1,4 +1,4 @@
-@php
+﻿@php
     $estado = $evento->estado;
     $colorConfig = match($estado) {
         'en_curso' => ['color' => 'green', 'badge' => 'En Curso', 'icon' => 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z'],
@@ -10,14 +10,8 @@
 
 <a href="{{ route('eventos.show', $evento->slug) }}" 
    class="group relative rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1" 
-   style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
-    
-    {{-- Efecto hover --}}
-    <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
-         style="background: radial-gradient(ellipse at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 75%);"></div>
-    
-    {{-- Imagen portada --}}
-    <div class="relative overflow-hidden h-48">
+   style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);"><div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+         style="background: radial-gradient(ellipse at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 75%);"></div><div class="relative overflow-hidden h-48">
         @if($evento->imagen_portada)
             <img src="{{ asset('storage/' . $evento->imagen_portada) }}"
                  alt="{{ $evento->titulo }}"
@@ -28,13 +22,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                 </svg>
             </div>
-        @endif
-
-        {{-- Overlay gradiente --}}
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-        {{-- Badge destacado (si aplica) --}}
-        @if($evento->destacado)
+        @endif<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>@if($evento->destacado)
             <div class="absolute top-3 right-3">
                 <span class="inline-flex items-center gap-1 px-2 py-1 bg-purple-500 text-white text-xs font-bold rounded-lg shadow-lg">
                     <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -46,9 +34,7 @@
         @endif
     </div>
 
-    <div class="relative p-6">
-        {{-- Icono y badge estado --}}
-        <div class="mb-4 flex items-center justify-between">
+    <div class="relative p-6"><div class="mb-4 flex items-center justify-between">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-{{ $colorConfig['color'] }}-500 to-{{ $colorConfig['color'] }}-700 flex items-center justify-center shadow-lg">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $colorConfig['icon'] }}"/>
@@ -57,22 +43,13 @@
             <span class="px-3 py-1 bg-{{ $colorConfig['color'] }}-500/20 text-{{ $colorConfig['color'] }}-300 text-xs font-bold rounded-lg border border-{{ $colorConfig['color'] }}-500/40">
                 {{ $colorConfig['badge'] }}
             </span>
-        </div>
-
-        {{-- Título --}}
-        <h3 class="text-xl font-bold text-white mb-3 leading-tight group-hover:text-blue-300 transition-colors duration-300 line-clamp-2">
+        </div><h3 class="text-xl font-bold text-white mb-3 leading-tight group-hover:text-blue-300 transition-colors duration-300 line-clamp-2">
             {{ $evento->titulo }}
-        </h3>
-
-        {{-- Descripción --}}
-        @if($evento->descripcion)
+        </h3>@if($evento->descripcion)
             <p class="text-white/70 text-sm leading-relaxed mb-4 line-clamp-2">
                 {{ $evento->descripcion }}
             </p>
-        @endif
-
-        {{-- Metadata: fecha y lugar --}}
-        <div class="flex flex-col gap-2 mb-4">
+        @endif<div class="flex flex-col gap-2 mb-4">
             @if($evento->fecha_inicio)
                 <div class="flex items-center gap-2 text-white/80 text-sm">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,10 +82,7 @@
                     <span>{{ $evento->galeria->count() }} foto(s)</span>
                 </div>
             @endif
-        </div>
-
-        {{-- Flecha indicador --}}
-        <div class="flex items-center gap-2 text-blue-300 text-sm font-bold">
+        </div><div class="flex items-center gap-2 text-blue-300 text-sm font-bold">
             <span>Ver detalles</span>
             <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

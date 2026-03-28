@@ -8,6 +8,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * Sistema: Vicerrectorado Académico - UNASAM
+ * Autor: Angel Rosales
+ * Año: 2026
+ *
+ * Modelo de Usuario - Gestión de autenticación y autorización
+ * Implementa roles y permisos mediante Spatie Permission.
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;

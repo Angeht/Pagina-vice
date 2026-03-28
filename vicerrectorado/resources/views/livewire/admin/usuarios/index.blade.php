@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+﻿<div class="container mx-auto">
 
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-900">
@@ -7,10 +7,7 @@
         <p class="text-gray-600 mt-2">
             Administra los usuarios del sistema y sus roles
         </p>
-    </div>
-
-    {{-- Mensajes --}}
-    @if (session()->has('message'))
+    </div>@if (session()->has('message'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6 flex items-center justify-between">
             <span>{{ session('message') }}</span>
             <button onclick="this.parentElement.remove()" class="text-green-700 hover:text-green-900">
@@ -30,10 +27,7 @@
                 </svg>
             </button>
         </div>
-    @endif
-
-    {{-- Formulario --}}
-    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+    @endif<div class="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 class="text-xl font-semibold mb-4 flex items-center">
             <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -43,9 +37,7 @@
 
         <form wire:submit.prevent="guardar" class="space-y-4">
 
-            <div class="grid md:grid-cols-2 gap-4">
-                {{-- Nombre --}}
-                <div>
+            <div class="grid md:grid-cols-2 gap-4"><div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">
                         Nombre Completo *
                     </label>
@@ -57,10 +49,7 @@
                     @error('name')
                         <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                     @enderror
-                </div>
-
-                {{-- Email --}}
-                <div>
+                </div><div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">
                         Email *
                     </label>
@@ -73,10 +62,7 @@
                         <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                     @enderror
                 </div>
-            </div>
-
-            {{-- Contraseña --}}
-            <div class="grid md:grid-cols-2 gap-4">
+            </div><div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">
                         Contraseña {{ $userId ? '(dejar vacío para mantener)' : '*' }}
@@ -100,10 +86,7 @@
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                            placeholder="Repetir contraseña">
                 </div>
-            </div>
-
-            {{-- Roles --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     Roles y Permisos
                 </label>
@@ -124,10 +107,7 @@
                         </p>
                     @endforelse
                 </div>
-            </div>
-
-            {{-- Botones --}}
-            <div class="flex gap-3 pt-4">
+            </div><div class="flex gap-3 pt-4">
                 <button type="submit"
                         class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,10 +129,7 @@
             </div>
 
         </form>
-    </div>
-
-    {{-- Búsqueda --}}
-    <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+    </div><div class="bg-white rounded-lg shadow-md p-4 mb-6">
         <div class="flex gap-3">
             <div class="flex-1 relative">
                 <input type="text"
@@ -170,10 +147,7 @@
                 </button>
             @endif
         </div>
-    </div>
-
-    {{-- Tabla --}}
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    </div><div class="bg-white rounded-lg shadow-md overflow-hidden">
 
         <div class="px-6 py-4 bg-gray-50 border-b">
             <h2 class="text-xl font-semibold flex items-center">
@@ -282,10 +256,7 @@
                 </tbody>
 
             </table>
-        </div>
-
-        {{-- Paginación --}}
-        @if($usuarios->hasPages())
+        </div>@if($usuarios->hasPages())
             <div class="px-6 py-4 bg-gray-50 border-t">
                 {{ $usuarios->links() }}
             </div>

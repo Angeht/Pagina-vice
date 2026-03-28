@@ -7,6 +7,14 @@ use Illuminate\Support\Str;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
+/**
+ * Sistema: Vicerrectorado Académico - UNASAM
+ * Autor: Angel Rosales
+ * Año: 2026
+ *
+ * Modelo de Documento Académico - Gestión de documentos y resoluciones
+ * Clasificación por tipos: resoluciones, manuales, guías, etc.
+ */
 class DocumentoAcademico extends Model
 {
     use LogsActivity;

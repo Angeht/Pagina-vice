@@ -1,17 +1,12 @@
-<x-public-layout>
+﻿<x-public-layout>
 
-<div class="relative min-h-screen py-16" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);">
-    {{-- Decoración de fondo --}}
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="relative min-h-screen py-16" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);"><div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
     </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-5xl mx-auto">
-
-            {{-- Botón de retroceso --}}
-            <div class="mb-8">
+        <div class="max-w-5xl mx-auto"><div class="mb-8">
                 <a href="{{ route('estructura.index') }}"
                    class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white/70 hover:text-white transition-colors"
                    style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
@@ -20,21 +15,9 @@
                     </svg>
                     <span class="font-medium">Volver a Estructura</span>
                 </a>
-            </div>
-
-            {{-- Título principal --}}
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
+            </div><h1 class="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
                 {{ $unidad->nombre }}
-            </h1>
-
-            {{-- Grid: Descripción (izquierda) e Imagen (derecha) --}}
-            <div class="grid lg:grid-cols-2 gap-8 mb-8">
-                
-                {{-- Información principal (izquierda) --}}
-                <div class="space-y-6">
-                    
-                    {{-- Responsable --}}
-                    @if($unidad->responsable)
+            </h1><div class="grid lg:grid-cols-2 gap-8 mb-8"><div class="space-y-6">@if($unidad->responsable)
                         <div class="rounded-2xl overflow-hidden" style="background: rgba(59,130,246,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(59,130,246,0.2);">
                             <div class="p-6">
                                 <div class="flex gap-3">
@@ -50,10 +33,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
-
-                    {{-- Descripción --}}
-                    @if($unidad->descripcion)
+                    @endif@if($unidad->descripcion)
                         <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
                             <div class="p-6">
                                 <div class="flex gap-3">
@@ -69,10 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
-
-                    {{-- Información de contacto --}}
-                    @if($unidad->correo || $unidad->telefono)
+                    @endif@if($unidad->correo || $unidad->telefono)
                         <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
                             <div class="p-6">
                                 <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
@@ -118,10 +95,7 @@
                         </div>
                     @endif
 
-                </div>
-
-                {{-- Imagen (derecha) --}}
-                <div class="rounded-2xl overflow-hidden shadow-2xl h-fit">
+                </div><div class="rounded-2xl overflow-hidden shadow-2xl h-fit">
                     @if($unidad->imagen)
                         <img src="{{ asset('storage/' . $unidad->imagen) }}"
                              alt="{{ $unidad->nombre }}"

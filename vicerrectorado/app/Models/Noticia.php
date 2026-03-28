@@ -7,6 +7,14 @@ use Illuminate\Support\Str;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
+/**
+ * Sistema: Vicerrectorado Académico - UNASAM
+ * Autor: Angel Rosales
+ * Año: 2026
+ *
+ * Modelo de Noticia - Gestión de noticias y comunicados del VRA
+ * Con soporte para publicación y auditoría de cambios.
+ */
 class Noticia extends Model
 {
     use LogsActivity;

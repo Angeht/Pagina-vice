@@ -1,16 +1,10 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('content')
 
 <h1 class="text-3xl font-bold mb-8 text-gray-800">
     Dashboard - Vicerrectorado Académico
-</h1>
-
-{{-- Tarjetas de Estadísticas --}}
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-    
-    {{-- Noticias --}}
-    <div class="bg-white shadow rounded-lg p-6 border-l-4 border-blue-500">
+</h1><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"><div class="bg-white shadow rounded-lg p-6 border-l-4 border-blue-500">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-sm text-gray-600 font-medium">Noticias Publicadas</p>
@@ -26,10 +20,7 @@
         <a href="{{ route('admin.noticias') }}" class="text-blue-600 text-sm font-medium mt-4 inline-block hover:underline">
             Ver todas →
         </a>
-    </div>
-
-    {{-- Convocatorias --}}
-    <div class="bg-white shadow rounded-lg p-6 border-l-4 border-green-500">
+    </div><div class="bg-white shadow rounded-lg p-6 border-l-4 border-green-500">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-sm text-gray-600 font-medium">Convocatorias Abiertas</p>
@@ -45,10 +36,7 @@
         <a href="{{ route('admin.convocatorias') }}" class="text-green-600 text-sm font-medium mt-4 inline-block hover:underline">
             Gestionar →
         </a>
-    </div>
-
-    {{-- Documentos --}}
-    <div class="bg-white shadow rounded-lg p-6 border-l-4 border-purple-500">
+    </div><div class="bg-white shadow rounded-lg p-6 border-l-4 border-purple-500">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-sm text-gray-600 font-medium">Documentos Activos</p>
@@ -64,10 +52,7 @@
         <a href="{{ route('admin.gestion') }}" class="text-purple-600 text-sm font-medium mt-4 inline-block hover:underline">
             Ver documentos →
         </a>
-    </div>
-
-    {{-- Autoridades --}}
-    <div class="bg-white shadow rounded-lg p-6 border-l-4 border-orange-500">
+    </div><div class="bg-white shadow rounded-lg p-6 border-l-4 border-orange-500">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-sm text-gray-600 font-medium">Autoridades</p>
@@ -85,13 +70,7 @@
         </a>
     </div>
 
-</div>
-
-{{-- Sección de Actividad Reciente --}}
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    
-    {{-- Noticias Recientes --}}
-    <div class="bg-white shadow rounded-lg p-6">
+</div><div class="grid grid-cols-1 lg:grid-cols-2 gap-6"><div class="bg-white shadow rounded-lg p-6">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Últimas Noticias</h2>
         
         @if($noticiasRecientes->count())
@@ -121,10 +100,7 @@
         @else
             <p class="text-gray-500 text-center py-8">No hay noticias registradas</p>
         @endif
-    </div>
-
-    {{-- Convocatorias Próximas/Abiertas --}}
-    <div class="bg-white shadow rounded-lg p-6">
+    </div><div class="bg-white shadow rounded-lg p-6">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Convocatorias Activas</h2>
         
         @if($convocatoriasProximas->count())
@@ -154,10 +130,7 @@
         @endif
     </div>
 
-</div>
-
-{{-- Accesos Rápidos --}}
-<div class="bg-white shadow rounded-lg p-6 mt-6">
+</div><div class="bg-white shadow rounded-lg p-6 mt-6">
     <h2 class="text-xl font-bold mb-4 text-gray-800">Accesos Rápidos</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <a href="{{ route('admin.noticias') }}" class="p-4 border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition text-center">

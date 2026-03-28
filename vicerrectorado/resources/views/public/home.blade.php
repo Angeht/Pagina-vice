@@ -1,14 +1,8 @@
-<x-public-layout>
-
-{{-- Hero Banner Institucional --}}
-@php
+﻿<x-public-layout>@php
 $titulo = \App\Models\Configuracion::getValor('banner_titulo');
 $subtitulo = \App\Models\Configuracion::getValor('banner_subtitulo');
 $imagen = \App\Models\Configuracion::getValor('banner_imagen');
-@endphp
-
-{{-- Imagen de fondo fija para toda la página --}}
-@if($imagen)
+@endphp@if($imagen)
     <div class="fixed inset-0 z-0" style="pointer-events: none;">
         <img src="{{ asset('storage/' . $imagen) }}" class="w-full h-full object-cover" alt="Banner">
         <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(15,23,42,0.40) 0%, rgba(15,23,42,0.60) 40%, rgba(15,23,42,0.85) 100%);"></div>
@@ -17,27 +11,17 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
 
 <div id="hero-banner" class="relative min-h-screen flex flex-col justify-center overflow-hidden" style="background: linear-gradient(125deg, rgba(15,23,42,0.5) 0%, rgba(30,41,59,0.6) 40%, rgba(30,58,138,0.5) 70%, rgba(15,23,42,0.6) 100%);">
 
-    @if(!$imagen)
-        {{-- Fondo decorativo sin imagen --}}
-        <div class="absolute inset-0 pointer-events-none">
+    @if(!$imagen)<div class="absolute inset-0 pointer-events-none">
             <div class="absolute top-0 right-0 w-1/2 h-full" style="background: radial-gradient(ellipse at 80% 30%, rgba(59,130,246,0.18) 0%, transparent 60%);"></div>
             <div class="absolute bottom-0 left-0 w-96 h-96" style="background: radial-gradient(ellipse at 20% 80%, rgba(99,102,241,0.15) 0%, transparent 60%);"></div>
         </div>
-    @endif
-
-    {{-- Líneas decorativas --}}
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    @endif<div class="absolute inset-0 pointer-events-none overflow-hidden">
         <div class="absolute top-10 right-0 w-px h-64 bg-gradient-to-b from-transparent via-blue-400/30 to-transparent"></div>
         <div class="absolute top-0 right-32 w-px h-48 bg-gradient-to-b from-transparent via-blue-300/20 to-transparent"></div>
         <div class="absolute bottom-40 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
         <div class="absolute top-1/3 right-1/4 w-72 h-72 border border-blue-500/10 rounded-full"></div>
-        <div class="absolute top-1/3 right-1/4 w-48 h-48 mt-12 mr-12 border border-blue-400/10 rounded-full"></div>
-        {{-- Puntos decorativos --}}
-        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 60px 60px;"></div>
-    </div>
-
-    {{-- Logo VRA con los mismos márgenes del contenedor principal --}}
-    <div class="absolute inset-0 pointer-events-none z-5">
+        <div class="absolute top-1/3 right-1/4 w-48 h-48 mt-12 mr-12 border border-blue-400/10 rounded-full"></div><div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    </div><div class="absolute inset-0 pointer-events-none z-5">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
             <div class="absolute top-1/2 right-0 transform -translate-y-1/2 pointer-events-auto">
                 <div class="sticky top-24">
@@ -60,91 +44,48 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                 transform: scale(1);
             }
         }
-    </style>
-
-    {{-- Contenido principal --}}
-    <div class="relative max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 py-24 lg:py-1 w-full">
-        <div class="max-w-2xl">
-            {{-- Badge institucional --}}
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/30 bg-blue-500/10 mb-8">
+    </style><div class="relative max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 py-24 lg:py-1 w-full">
+        <div class="max-w-2xl"><div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/30 bg-blue-500/10 mb-8">
                 <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
                 <span class="text-blue-300 text-xs font-bold uppercase tracking-widest">Universidad · Vicerrectorado Académico</span>
-            </div>
-
-            {{-- Contenedor con fondo para mejorar contraste --}}
-            <div class="bg-slate-900/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-2xl">
-                {{-- Título --}}
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6" style="letter-spacing: -1px;">
+            </div><div class="bg-slate-900/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-2xl"><h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6" style="letter-spacing: -1px;">
                     {{ $titulo ?? 'Vicerrectorado Académico' }}
-                </h1>
-
-                {{-- Línea decorativa --}}
-                <div class="flex items-center gap-4 mb-6">
+                </h1><div class="flex items-center gap-4 mb-6">
                     <div class="h-1 w-16 bg-blue-400 rounded-full"></div>
                     <div class="h-1 w-6 bg-blue-600 rounded-full"></div>
                     <div class="h-1 w-3 bg-blue-800 rounded-full"></div>
-                </div>
-
-                {{-- Subtítulo --}}
-                <p class="text-lg md:text-xl text-blue-100 leading-relaxed max-w-xl">
+                </div><p class="text-lg md:text-xl text-blue-100 leading-relaxed max-w-xl">
                     {{ $subtitulo ?? 'Comprometidos con la excelencia académica y la formación integral de nuestra comunidad universitaria.' }}
                 </p>
             </div>
         </div>
     </div>
-</div>
-
-{{-- ══════════════════════════════════════════════════════════════
-     BARRA DE ACCESO RÁPIDO - Enlaces Directos Renovado
-══════════════════════════════════════════════════════════════ --}}
-<section class="relative z-10 py-8 overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.94) 50%, rgba(30,58,138,0.92) 100%); backdrop-filter: blur(12px);">
-    
-    {{-- Decoración de fondo --}}
-    <div class="absolute inset-0 pointer-events-none">
+</div><section class="relative z-10 py-8 overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.94) 50%, rgba(30,58,138,0.92) 100%); backdrop-filter: blur(12px);"><div class="absolute inset-0 pointer-events-none">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
         <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 40px 40px;"></div>
-    </div>
-    
-    {{-- Líneas decorativas --}}
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
+    </div><div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
     
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            
-            {{-- Enlace: Convocatorias --}}
-            <a href="{{ route('convocatorias.index') }}" 
-               class="group relative overflow-hidden bg-white/5 backdrop-blur-md hover:bg-white/10 rounded-xl border border-white/10 hover:border-blue-400/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1">
-                {{-- Gradiente hover --}}
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-600/0 group-hover:from-blue-500/10 group-hover:to-blue-600/5 transition-all duration-500"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"><a href="{{ route('convocatorias.index') }}" 
+               class="group relative overflow-hidden bg-white/5 backdrop-blur-md hover:bg-white/10 rounded-xl border border-white/10 hover:border-blue-400/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1"><div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-600/0 group-hover:from-blue-500/10 group-hover:to-blue-600/5 transition-all duration-500"></div>
                 
-                <div class="relative p-4 flex items-center gap-4">
-                    {{-- Icono compacto --}}
-                    <div class="relative flex-shrink-0">
+                <div class="relative p-4 flex items-center gap-4"><div class="relative flex-shrink-0">
                         <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-lg shadow-blue-500/30">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
-                    </div>
-                    
-                    {{-- Contenido --}}
-                    <div class="flex-1 min-w-0">
+                    </div><div class="flex-1 min-w-0">
                         <h3 class="font-bold text-white text-sm group-hover:text-blue-300 transition-colors truncate">Convocatorias</h3>
                         <p class="text-xs text-blue-200/70">Abiertas ahora</p>
-                    </div>
-                    
-                    {{-- Flecha --}}
-                    <svg class="w-4 h-4 text-blue-400 group-hover:text-blue-300 group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    </div><svg class="w-4 h-4 text-blue-400 group-hover:text-blue-300 group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                 </div>
-            </a>
-
-            {{-- Enlace: Gestión Académica --}}
-            <a href="{{ route('gestion.index') }}" 
+            </a><a href="{{ route('gestion.index') }}" 
                class="group relative overflow-hidden bg-white/5 backdrop-blur-md hover:bg-white/10 rounded-xl border border-white/10 hover:border-emerald-400/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 hover:-translate-y-1">
                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-emerald-600/0 group-hover:from-emerald-500/10 group-hover:to-emerald-600/5 transition-all duration-500"></div>
                 
@@ -166,10 +107,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                 </div>
-            </a>
-
-            {{-- Enlace: Autoridades --}}
-            <a href="{{ route('autoridades.index') }}" 
+            </a><a href="{{ route('autoridades.index') }}" 
                class="group relative overflow-hidden bg-white/5 backdrop-blur-md hover:bg-white/10 rounded-xl border border-white/10 hover:border-indigo-400/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-indigo-500/20 hover:-translate-y-1">
                 <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-indigo-600/0 group-hover:from-indigo-500/10 group-hover:to-indigo-600/5 transition-all duration-500"></div>
                 
@@ -191,10 +129,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                 </div>
-            </a>
-
-            {{-- Enlace: Estructura --}}
-            <a href="{{ route('estructura.index') }}" 
+            </a><a href="{{ route('estructura.index') }}" 
                class="group relative overflow-hidden bg-white/5 backdrop-blur-md hover:bg-white/10 rounded-xl border border-white/10 hover:border-purple-400/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-purple-500/20 hover:-translate-y-1">
                 <div class="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-purple-600/0 group-hover:from-purple-500/10 group-hover:to-purple-600/5 transition-all duration-500"></div>
                 
@@ -221,12 +156,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
         </div>
     </div>
     </div>
-</section>
-
-{{-- ══════════════════════════════════════════════════════════════
-     SECCIÓN VICERRECTOR
-══════════════════════════════════════════════════════════════ --}}
-@php
+</section>@php
     $vrNombre = \App\Models\Configuracion::getValor('vicerrector_nombre');
     $vrCargo  = \App\Models\Configuracion::getValor('vicerrector_cargo');
     $vrTexto  = \App\Models\Configuracion::getValor('vicerrector_texto');
@@ -234,14 +164,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
     $vrImagen = \App\Models\Configuracion::getValor('vicerrector_imagen');
 @endphp
 
-@if($vrNombre || $vrTexto)
-{{-- ══════════════════════════════════════════════════════════════
-     SECCIÓN VICERRECTOR ACADÉMICO - DISEÑO EQUILIBRADO
-══════════════════════════════════════════════════════════════ --}}
-<section class="reveal relative z-10 overflow-hidden py-24 lg:py-10" style="background: linear-gradient(180deg, rgba(15,23,42,0.94) 0%, rgba(25,35,55,0.96) 50%, rgba(15,23,42,0.94) 100%); backdrop-filter: blur(10px);">
-    
-    {{-- Fondo minimalista --}}
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+@if($vrNombre || $vrTexto)<section class="reveal relative z-10 overflow-hidden py-24 lg:py-10" style="background: linear-gradient(180deg, rgba(15,23,42,0.94) 0%, rgba(25,35,55,0.96) 50%, rgba(15,23,42,0.94) 100%); backdrop-filter: blur(10px);"><div class="absolute inset-0 pointer-events-none overflow-hidden">
         <div class="absolute inset-0 opacity-[0.02]" style="background-image: 
             linear-gradient(rgba(59,130,246,0.3) 1px, transparent 1px),
             linear-gradient(90deg, rgba(59,130,246,0.3) 1px, transparent 1px);
@@ -249,27 +172,15 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-600/5 blur-[100px]"></div>
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Header simple --}}
-       
-
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            
-            {{-- ══ COLUMNA IZQUIERDA: Foto Institucional ══ --}}
-            <div class="lg:col-span-1">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start"><div class="lg:col-span-1">
                 <div class="sticky top-24">
                     @if($vrImagen)
-                        <div class="relative group">
-                            {{-- Imagen con bordes elegantes --}}
-                            <div class="relative overflow-hidden shadow-2xl border-4 border-slate-700/50">
+                        <div class="relative group"><div class="relative overflow-hidden shadow-2xl border-4 border-slate-700/50">
                                 <img src="{{ asset('storage/' . $vrImagen) }}"
                                      alt="{{ $vrNombre }}"
                                      class="w-full h-[650px] lg:h-[800px] object-cover object-top"
                                      style="filter: contrast(1.05) brightness(0.98) saturate(0.95);">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"></div>
-                                
-                                {{-- Borde interior sutil --}}
-                                <div class="absolute inset-2 border-2 border-white/10 pointer-events-none"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"></div><div class="absolute inset-2 border-2 border-white/10 pointer-events-none"></div>
                             </div>
                             
                         </div>
@@ -281,13 +192,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                         </div>
                     @endif
                 </div>
-            </div>
-
-            {{-- ══ COLUMNA DERECHA: Contenido ══ --}}
-            <div class="lg:col-span-1 space-y-8">
-                
-                {{-- Nombre y cargo --}}
-                <div class="space-y-5">
+            </div><div class="lg:col-span-1 space-y-8"><div class="space-y-5">
                     <div class="border-l-4 border-blue-600 pl-5 space-y-3">
                         @if($vrNombre)
                             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
@@ -298,17 +203,11 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                             <p class="text-blue-300 text-xl font-semibold">{{ $vrCargo }}</p>
                             @endif
                     </div>
-                </div>
-
-                {{-- Separador --}}
-                <div class="flex items-center gap-3">
+                </div><div class="flex items-center gap-3">
                     <div class="h-px flex-1 bg-blue-500/20"></div>
                     <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
                     <div class="h-px flex-1 bg-blue-500/20"></div>
-                </div>
-
-                {{-- Texto --}}
-                @if($vrTexto)
+                </div>@if($vrTexto)
                     <div class="text-gray-300 leading-relaxed space-y-4 text-base lg:text-lg">
                         @foreach(array_filter(array_map('trim', explode("\n", $vrTexto))) as $parrafo)
                             @if(trim($parrafo))
@@ -316,10 +215,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                             @endif
                         @endforeach
                     </div>
-                @endif
-
-                {{-- Cita --}}
-                @if($vrCita)
+                @endif@if($vrCita)
                     <div class="relative pl-6 pr-4 py-6 bg-slate-800/40 border-l-4 border-blue-600">
                         <svg class="absolute top-4 left-2 w-5 h-5 text-blue-600/40" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
@@ -328,10 +224,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                             {{ $vrCita }}
                         </p>
                     </div>
-                @endif
-
-                {{-- Botón --}}
-                <div class="pt-6">
+                @endif<div class="pt-6">
                     <a href="{{ route('autoridades.index') }}" 
                        class="group inline-flex items-center gap-3 px-8 py-4 bg-blue-700 hover:bg-blue-600 text-white font-semibold uppercase tracking-wider text-sm shadow-lg hover:shadow-xl transition-all">
                         <span>Conocer más autoridades</span>
@@ -362,18 +255,8 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                 
 
 </section>
-@endif
-{{-- ══════════════════════════════════════════════════════════════
-     SECCIÓN EVENTOS Y MOMENTOS DESTACADOS
-══════════════════════════════════════════════════════════════ --}}
-@if($eventosDestacados->count())
-<section class="reveal relative z-10 overflow-hidden py-10" style="background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(30,41,59,0.88) 30%, rgba(30,58,138,0.85) 60%, rgba(15,23,42,0.90) 100%); backdrop-filter: blur(8px);">
-    
-    {{-- Fondo de color con opacidad --}}
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-950/30 via-slate-900/20 to-blue-950/25 pointer-events-none"></div>
-    
-    {{-- Decoración de fondo --}}
-    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full opacity-15 blur-3xl pointer-events-none"></div>
+@endif@if($eventosDestacados->count())
+<section class="reveal relative z-10 overflow-hidden py-10" style="background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(30,41,59,0.88) 30%, rgba(30,58,138,0.85) 60%, rgba(15,23,42,0.90) 100%); backdrop-filter: blur(8px);"><div class="absolute inset-0 bg-gradient-to-br from-slate-950/30 via-slate-900/20 to-blue-950/25 pointer-events-none"></div><div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full opacity-15 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-700 rounded-full opacity-20 blur-3xl pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -393,28 +276,16 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($eventosDestacados as $evento)
                 <a href="{{ route('eventos.show', $evento->slug) }}"
-                   class="group relative rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
-                    
-                    {{-- Efecto hover sutil --}}
-                    <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: radial-gradient(ellipse at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 75%);"></div>
-                    
-                    {{-- Imagen del evento --}}
-                    @if($evento->imagen_portada)
+                   class="group relative rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);"><div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: radial-gradient(ellipse at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 75%);"></div>@if($evento->imagen_portada)
                         <div class="relative h-48 overflow-hidden">
                             <img src="{{ asset('storage/' . $evento->imagen_portada) }}" 
                                  alt="{{ $evento->titulo }}"
                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            
-                            {{-- Icono flotante sobre la imagen --}}
-                            <div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
                                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
-                            </div>
-
-                            {{-- Badge de estado --}}
-                            <div class="absolute top-4 right-4">
+                            </div><div class="absolute top-4 right-4">
                                 @if($evento->estado === 'proximo')
                                     <span class="px-3 py-1.5 bg-blue-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-full shadow-lg">Próximo</span>
                                 @elseif($evento->estado === 'en_curso')
@@ -441,9 +312,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                         </div>
                     @endif
                     
-                    <div class="relative p-6">
-                        {{-- Fecha y hora destacada --}}
-                        <div class="flex items-center gap-3 mb-4">
+                    <div class="relative p-6"><div class="flex items-center gap-3 mb-4">
                             <div class="flex-shrink-0 bg-blue-500/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-blue-400/30">
                                 <div class="text-center">
                                     <div class="text-2xl font-black text-blue-300">{{ $evento->fecha_inicio->format('d') }}</div>
@@ -486,20 +355,14 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                     </div>
                 </a>
             @endforeach
-        </div>
-
-        {{-- Mensaje si no hay eventos --}}
-        @if($eventosDestacados->count() === 0)
+        </div>@if($eventosDestacados->count() === 0)
         <div class="text-center py-12">
             <svg class="w-20 h-20 text-white/60 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
             <p class="text-white/80 text-lg font-medium">No hay eventos destacados en este momento</p>
         </div>
-        @endif
-
-        {{-- Botón ver todos (móvil) --}}
-        <div class="text-center mt-10 lg:hidden">
+        @endif<div class="text-center mt-10 lg:hidden">
             <a href="{{ route('eventos.index') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-xl hover:bg-white/90 transition-all font-bold shadow-lg hover:shadow-xl backdrop-blur-sm border border-white/80">
                 Ver todos los eventos
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -509,15 +372,8 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
         </div>
     </div>
 </section>
-@endif
-
-{{-- ══════════════════════════════════════════════════════════════
-     SECCIÓN GALERÍA DE FOTOS
-══════════════════════════════════════════════════════════════ --}}
-@if($galeriaImagenes->count() > 0)
-<section class="reveal relative z-10 overflow-hidden py-10" style="background: linear-gradient(160deg, rgba(15,23,42,0.88) 0%, rgba(30,41,59,0.85) 50%, rgba(15,23,42,0.90) 100%); backdrop-filter: blur(8px);">
-    {{-- Decoración estrellas / partículas --}}
-    <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 40px 40px;"></div>
+@endif@if($galeriaImagenes->count() > 0)
+<section class="reveal relative z-10 overflow-hidden py-10" style="background: linear-gradient(160deg, rgba(15,23,42,0.88) 0%, rgba(30,41,59,0.85) 50%, rgba(15,23,42,0.90) 100%); backdrop-filter: blur(8px);"><div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 40px 40px;"></div>
     <div class="absolute top-10 right-20 w-72 h-72 bg-blue-600 rounded-full opacity-10 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-10 left-10 w-56 h-56 bg-blue-700 rounded-full opacity-15 blur-3xl pointer-events-none"></div>
 
@@ -525,10 +381,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
         <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-white mb-2">Momentos Destacados</h2>
             <p class="text-white/70 text-lg">Actividades y eventos del Vicerrectorado Académico</p>
-        </div>
-
-        {{-- Carrusel con 3 imágenes --}}
-        <div x-data="{
+        </div><div x-data="{
             currentIndex: 0,
             itemsPerView: 3,
             totalItems: {{ $galeriaImagenes->count() }},
@@ -570,9 +423,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                     this.currentIndex = this.maxIndex;
                 }
             }
-        }" class="relative">
-            {{-- Contenedor del carrusel --}}
-            <div class="overflow-hidden rounded-2xl">
+        }" class="relative"><div class="overflow-hidden rounded-2xl">
                 <div class="flex transition-transform duration-700 ease-in-out"
                      :style="`transform: translateX(-${currentIndex * (100 / itemsPerView)}%)`">
                     @foreach($galeriaImagenes as $index => $imagen)
@@ -581,10 +432,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                                 <img src="{{ $imagen->url_imagen }}" 
                                      alt="{{ $imagen->titulo }}"
                                      class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-all"></div>
-                                
-                                {{-- Información de la imagen --}}
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-all"></div><div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform">
                                     <div class="mb-2">
                                         <span class="inline-block px-3 py-1 bg-blue-500/80 text-white text-xs font-bold rounded-full backdrop-blur-sm">
                                             Foto {{ $index + 1 }}
@@ -596,10 +444,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                                             {{ $imagen->descripcion }}
                                         </p>
                                     @endif
-                                </div>
-
-                                {{-- Overlay decorativo --}}
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div><div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <div class="bg-white/10 backdrop-blur-sm rounded-full p-2">
                                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -610,10 +455,7 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                         </div>
                     @endforeach
                 </div>
-            </div>
-
-            {{-- Botones de navegación --}}
-            <button @click="prev(); stopAutoplay(); startAutoplay();" 
+            </div><button @click="prev(); stopAutoplay(); startAutoplay();" 
                     x-show="totalItems > itemsPerView"
                     class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/90 hover:bg-white text-gray-800 p-4 rounded-full transition-all shadow-xl hover:shadow-2xl z-20 backdrop-blur-sm">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -626,19 +468,13 @@ $imagen = \App\Models\Configuracion::getValor('banner_imagen');
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
                 </svg>
-            </button>
-
-            {{-- Indicadores de progreso --}}
-            <div class="flex justify-center gap-2 mt-8" x-show="totalItems > itemsPerView">
+            </button><div class="flex justify-center gap-2 mt-8" x-show="totalItems > itemsPerView">
                 <template x-for="i in (maxIndex + 1)" :key="i">
                     <button @click="currentIndex = i - 1; stopAutoplay(); startAutoplay();"
                             :class="currentIndex === i - 1 ? 'bg-blue-500 w-10' : 'bg-white/30 hover:bg-white/50 w-3'"
                             class="h-3 rounded-full transition-all duration-300"></button>
                 </template>
-            </div>
-
-            {{-- Contador --}}
-            <div class="text-center mt-4">
+            </div><div class="text-center mt-4">
                 <span class="text-white/60 text-sm font-medium" x-text="`${currentIndex + 1} - ${Math.min(currentIndex + itemsPerView, totalItems)} de ${totalItems} fotos`"></span>
             </div>
         </div>

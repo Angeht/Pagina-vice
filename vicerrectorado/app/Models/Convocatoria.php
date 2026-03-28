@@ -8,6 +8,14 @@ use Carbon\Carbon;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
+/**
+ * Sistema: Vicerrectorado Académico - UNASAM
+ * Autor: Angel Rosales
+ * Año: 2026
+ *
+ * Modelo de Convocatoria - Gestión de convocatorias académicas
+ * Gestiona estados: abierta, próxima, cerrada. Con auditoría.
+ */
 class Convocatoria extends Model
 {
     use LogsActivity;

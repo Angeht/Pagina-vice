@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+﻿<div class="container mx-auto">
 
     <h1 class="text-2xl font-bold mb-6">
         Configuración Banner Principal
@@ -52,10 +52,7 @@
 
                 <div wire:loading wire:target="imagen" class="text-sm text-blue-600 mt-2">
                     Cargando imagen...
-                </div>
-
-                {{-- Preview imagen temporal --}}
-                @if ($imagen)
+                </div>@if ($imagen)
                     <div class="mt-4 relative inline-block">
                         <img src="{{ $imagen->temporaryUrl() }}"
                              class="w-64 rounded border">
@@ -68,9 +65,7 @@
                             </svg>
                         </button>
                     </div>
-                @elseif($imagen_actual)
-                    {{-- Imagen actual --}}
-                    <div class="mt-4">
+                @elseif($imagen_actual)<div class="mt-4">
                         <p class="text-sm text-gray-600 mb-2">Imagen actual:</p>
                         <img src="{{ asset('storage/' . $imagen_actual) }}"
                              class="w-64 rounded border">

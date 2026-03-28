@@ -1,7 +1,4 @@
-<div class="max-w-6xl mx-auto">
-
-    {{-- Header --}}
-    <div class="flex items-center justify-between mb-8">
+﻿<div class="max-w-6xl mx-auto"><div class="flex items-center justify-between mb-8">
         <div>
             <h1 class="text-3xl font-bold text-gray-900">📄 Gestión Académica</h1>
             <p class="text-gray-500 mt-1">Administra documentos: calendarios, reglamentos, planes de estudio y directivas.</p>
@@ -10,39 +7,27 @@
            class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition text-sm font-medium">
             ← Dashboard
         </a>
-    </div>
-
-    {{-- Flash --}}
-    @if(session()->has('message'))
+    </div>@if(session()->has('message'))
         <div class="mb-6 px-4 py-3 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm font-medium flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
             {{ session('message') }}
         </div>
-    @endif
-
-    {{-- ── FORMULARIO ── --}}
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8" id="form-doc"
+    @endif<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8" id="form-doc"
          x-data
          x-on:editar-documento.window="$el.scrollIntoView({behavior:'smooth', block:'start'})">
         <h2 class="text-lg font-bold text-gray-800 mb-5">
             {{ $documentoId ? '✏️ Editar Documento' : '➕ Nuevo Documento' }}
         </h2>
 
-        <form wire:submit.prevent="guardar" class="space-y-4">
-
-            {{-- Título --}}
-            <div>
+        <form wire:submit.prevent="guardar" class="space-y-4"><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Título <span class="text-red-500">*</span></label>
                 <input type="text" wire:model="titulo"
                        placeholder="Ej: Reglamento General 2026"
                        class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 @error('titulo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            {{-- Tipo + Fecha --}}
-            <div class="grid md:grid-cols-2 gap-4">
+            </div><div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Tipo <span class="text-red-500">*</span></label>
                     <select wire:model="tipo"
@@ -61,19 +46,13 @@
                            class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     @error('fecha_publicacion') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
-            </div>
-
-            {{-- Descripción --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Descripción (opcional)</label>
                 <textarea wire:model="descripcion" rows="3"
                           placeholder="Breve descripción del documento..."
                           class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
                 @error('descripcion') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            {{-- Archivo PDF --}}
-            <div>
+            </div><div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     Archivo PDF {{ $documentoId ? '(dejar vacío para conservar el actual)' : '' }}
                 </label>
@@ -91,10 +70,7 @@
                     <input type="file" wire:model="archivo" accept="application/pdf" class="hidden">
                 </label>
                 @error('archivo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            {{-- Activo + Botones --}}
-            <div class="flex items-center justify-between pt-2">
+            </div><div class="flex items-center justify-between pt-2">
                 <label class="flex items-center gap-2 cursor-pointer select-none">
                     <input type="checkbox" wire:model="activo"
                            class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
@@ -116,10 +92,7 @@
                 </div>
             </div>
         </form>
-    </div>
-
-    {{-- ── LISTA DE DOCUMENTOS ── --}}
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    </div><div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 class="text-lg font-bold text-gray-800">📋 Documentos ({{ $documentos->total() }})</h2>
             <span class="text-xs text-gray-400">Ordenados por fecha de publicación</span>
@@ -147,17 +120,12 @@
                     </thead>
                     <tbody class="divide-y divide-gray-50">
                         @foreach($documentos as $doc)
-                            <tr class="hover:bg-gray-50 transition {{ $documentoId === $doc->id ? 'bg-blue-50 ring-1 ring-inset ring-blue-200' : '' }}">
-                                {{-- Título + descripción --}}
-                                <td class="px-6 py-4">
+                            <tr class="hover:bg-gray-50 transition {{ $documentoId === $doc->id ? 'bg-blue-50 ring-1 ring-inset ring-blue-200' : '' }}"><td class="px-6 py-4">
                                     <p class="font-semibold text-gray-900 leading-tight">{{ $doc->titulo }}</p>
                                     @if($doc->descripcion)
                                         <p class="text-gray-400 text-xs mt-0.5 line-clamp-1">{{ $doc->descripcion }}</p>
                                     @endif
-                                </td>
-
-                                {{-- Tipo badge --}}
-                                <td class="px-6 py-4">
+                                </td><td class="px-6 py-4">
                                     @php
                                         $tipos = [
                                             'calendario'   => ['label' => 'Calendario',   'class' => 'bg-blue-100 text-blue-700'],
@@ -170,15 +138,9 @@
                                     <span class="px-2.5 py-1 rounded-full text-[11px] font-bold {{ $t['class'] }}">
                                         {{ $t['label'] }}
                                     </span>
-                                </td>
-
-                                {{-- Fecha --}}
-                                <td class="px-6 py-4 text-gray-600 whitespace-nowrap">
+                                </td><td class="px-6 py-4 text-gray-600 whitespace-nowrap">
                                     {{ $doc->fecha_publicacion ? \Carbon\Carbon::parse($doc->fecha_publicacion)->format('d/m/Y') : '—' }}
-                                </td>
-
-                                {{-- Archivo --}}
-                                <td class="px-6 py-4 text-center">
+                                </td><td class="px-6 py-4 text-center">
                                     @if($doc->archivo)
                                         <a href="{{ asset('storage/' . $doc->archivo) }}" target="_blank"
                                            class="inline-flex items-center gap-1 px-3 py-1 bg-red-50 text-red-600 rounded-lg text-xs font-semibold hover:bg-red-100 transition">
@@ -190,28 +152,17 @@
                                     @else
                                         <span class="text-gray-300 text-xs">Sin archivo</span>
                                     @endif
-                                </td>
-
-                                {{-- Estado --}}
-                                <td class="px-6 py-4 text-center">
+                                </td><td class="px-6 py-4 text-center">
                                     <span class="{{ $doc->activo ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500' }} px-2.5 py-1 rounded-full text-[11px] font-bold">
                                         {{ $doc->activo ? 'Visible' : 'Oculto' }}
                                     </span>
-                                </td>
-
-                                {{-- Acciones --}}
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center justify-center gap-2">
-                                        {{-- Editar --}}
-                                        <button wire:click="editar({{ $doc->id }})"
+                                </td><td class="px-6 py-4">
+                                    <div class="flex items-center justify-center gap-2"><button wire:click="editar({{ $doc->id }})"
                                                 class="p-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition" title="Editar">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                             </svg>
-                                        </button>
-
-                                        {{-- Eliminar con confirmación --}}
-                                        @if($confirmandoEliminar === $doc->id)
+                                        </button>@if($confirmandoEliminar === $doc->id)
                                             <div class="flex items-center gap-1">
                                                 <button wire:click="eliminar"
                                                         class="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 transition">
@@ -236,10 +187,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-
-            {{-- Paginación --}}
-            @if($documentos->hasPages())
+            </div>@if($documentos->hasPages())
                 <div class="px-6 py-4 border-t border-gray-100">
                     {{ $documentos->links() }}
                 </div>

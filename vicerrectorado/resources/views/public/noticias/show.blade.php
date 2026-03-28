@@ -1,20 +1,16 @@
-<x-public-layout>
+﻿<x-public-layout>
 
-{{-- Fondo oscuro institucional --}}
 <div class="relative overflow-hidden min-h-screen" style="background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.92) 30%, rgba(30,58,138,0.90) 60%, rgba(15,23,42,0.93) 100%);">
-    
-    {{-- Decoración de fondo --}}
+
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 50px 50px;"></div>
         <div class="absolute top-0 right-0 w-1/2 h-full" style="background: radial-gradient(ellipse at 80% 30%, rgba(59,130,246,0.15) 0%, transparent 65%);"></div>
     </div>
 
-    {{-- Círculos decorativos --}}
     <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full opacity-15 blur-3xl pointer-events-none"></div>
 
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
 
-        {{-- Botón volver --}}
         <a href="{{ route('noticias.index') }}" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 mb-8 transition-colors duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -22,7 +18,6 @@
             <span class="font-semibold">Volver a noticias</span>
         </a>
 
-        {{-- Badge de categoría --}}
         @if($noticia->categoria)
             <div class="mb-6">
                 <span class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 text-blue-300 text-sm font-bold rounded-lg border border-blue-500/40">
@@ -34,12 +29,10 @@
             </div>
         @endif
 
-        {{-- Título --}}
         <h1 class="text-4xl md:text-5xl font-black text-white leading-tight mb-6" style="letter-spacing: -1px;">
             {{ $noticia->titulo }}
         </h1>
 
-        {{-- Metadata --}}
         <div class="flex flex-wrap gap-4 mb-8 text-white/70">
             <div class="flex items-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,10 +51,8 @@
             @endif
         </div>
 
-        {{-- Grid: Resumen (izquierda) e Imagen (derecha) --}}
         <div class="grid lg:grid-cols-2 gap-8 mb-8">
-            
-            {{-- Resumen destacado (izquierda) --}}
+
             @if($noticia->resumen)
                 <div class="rounded-2xl overflow-hidden h-fit" style="background: rgba(59,130,246,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(59,130,246,0.2);">
                     <div class="p-6">
@@ -80,7 +71,6 @@
                 </div>
             @endif
 
-            {{-- Imagen principal (derecha) --}}
             @if($noticia->imagen)
                 <div class="rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
                     <img src="{{ asset('storage/' . $noticia->imagen) }}"
@@ -91,7 +81,6 @@
 
         </div>
 
-        {{-- Contenido completo (abajo, ancho completo) --}}
         <div class="rounded-2xl overflow-hidden mb-8" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
             <div class="p-8">
                 <h2 class="text-2xl font-bold text-white mb-6">Detalles Completos</h2>
@@ -103,7 +92,6 @@
             </div>
         </div>
 
-        {{-- Footer con compartir y acciones --}}
         <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
             <div class="p-6">
                 <div class="flex flex-wrap items-center justify-between gap-4">

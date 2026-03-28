@@ -1,13 +1,10 @@
-<x-public-layout>
+﻿<x-public-layout>
 
 <div class="container mx-auto px-6 py-12">
 
     <h1 class="text-3xl font-bold mb-6">
         Resultados para: "{{ $q }}"
-    </h1>
-
-    {{-- NOTICIAS --}}
-    @if($noticias->count())
+    </h1>@if($noticias->count())
         <h2 class="text-xl font-semibold mb-4">Noticias</h2>
         @foreach($noticias as $n)
             <a href="{{ route('noticias.show', $n) }}"
@@ -15,10 +12,7 @@
                 {{ $n->titulo }}
             </a>
         @endforeach
-    @endif
-
-    {{-- CONVOCATORIAS --}}
-    @if($convocatorias->count())
+    @endif@if($convocatorias->count())
         <h2 class="text-xl font-semibold mt-8 mb-4">Convocatorias</h2>
         @foreach($convocatorias as $c)
             <a href="{{ route('convocatorias.show', $c) }}"
@@ -26,10 +20,7 @@
                 {{ $c->titulo }}
             </a>
         @endforeach
-    @endif
-
-    {{-- DOCUMENTOS --}}
-    @if($documentos->count())
+    @endif@if($documentos->count())
         <h2 class="text-xl font-semibold mt-8 mb-4">Documentos</h2>
         @foreach($documentos as $d)
             <a href="{{ asset('storage/' . $d->archivo) }}"
